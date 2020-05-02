@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +22,9 @@ public class Snippet {
 	private List<Personaje> personaje; //Puede no referirse ningun personaje en especifico;
 	// @dante mandame un mensaje cuando veas esto xD,// private Capitulo ultimoCap;
 
+	@ManyToMany(mappedBy = "spoilersEnArticulo")
+	private List<Articulo> articulos;
+	
 	public String getIdSnippet() {
 		return idSnippet;
 	}

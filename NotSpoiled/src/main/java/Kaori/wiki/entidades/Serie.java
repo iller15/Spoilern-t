@@ -19,7 +19,6 @@ public class Serie {
 	
 	@OneToMany(mappedBy = "serie")
 	private List<Temporada> temporadas;
-
 	
 	//Getters and setters
 	public String getIdSerie() {
