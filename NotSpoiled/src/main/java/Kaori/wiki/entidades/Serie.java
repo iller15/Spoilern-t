@@ -20,11 +20,13 @@ public class Serie {
 	@OneToMany(mappedBy = "serie")
 	private List<Temporada> temporadas;
 	
+	@OneToMany(mappedBy = "serie")
+	private List<Articulo> articulos;
+	
 	//Getters and setters
 	public String getIdSerie() {
 		return idSerie;
 	}
-
 	public void setIdSerie(String idSerie) {
 		this.idSerie = idSerie;
 	}
@@ -32,7 +34,6 @@ public class Serie {
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -40,7 +41,6 @@ public class Serie {
 	public List<Personaje> getPersonajes() {
 		return personajes;
 	}
-
 	public void setPersonajes(List<Personaje> personajes) {
 		this.personajes = personajes;
 	}
@@ -48,9 +48,17 @@ public class Serie {
 	public List<Temporada> getTemporadas() {
 		return temporadas;
 	}
-
 	public void setTemporadas(List<Temporada> temporadas) {
 		this.temporadas = temporadas;
+	}
+	
+
+	public List<Articulo> getArticulos() {
+		return articulos;
+	}
+
+	public void setArticulos(List<Articulo> articulos) {
+		this.articulos = articulos;
 	}
 	
 	
