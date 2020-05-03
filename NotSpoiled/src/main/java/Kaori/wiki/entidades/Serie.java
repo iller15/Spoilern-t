@@ -60,8 +60,6 @@ public class Serie {
 	public void setArticulos(List<Articulo> articulos) {
 		this.articulos = articulos;
 	}
-	
-	
-	
+
 	
 }
