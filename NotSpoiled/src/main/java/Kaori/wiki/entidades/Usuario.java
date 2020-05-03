@@ -12,18 +12,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Usuarios") //SEGÚN ESQUEMA YA ESCRITO
+@Table(name = "Usuarios") //SEGÃšN ESQUEMA YA ESCRITO
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	private Long idUsuario;
 	private String nombreUsuario;
-	private Integer nivelUsuario; 	//Categorías (Sería más fácil tenerlo numérico en
+	private Integer nivelUsuario; 	//CategorÃ­as (SerÃ­a mÃ¡s fÃ¡cil tenerlo numÃ©rico en
 									// backend y pasarlo a String para la UI no?)
 	private String password;
 	@OneToMany(mappedBy = "usuario")
 	List<AvanceSerie> series;
-	private String correo; // Información de contacto :p
+	private String correo; // InformaciÃ³n de contacto :p
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
@@ -64,14 +64,14 @@ public class Usuario implements Serializable {
 	// ----------------------------------------------------------------------------------
 	
 	//INCOMPLETO: CASO 1 (FEO), 2 y ERRORES
-	// TODO Implementar más funciones en las demás clases para facilitar
+	// TODO Implementar mÃ¡s funciones en las demÃ¡s clases para facilitar
 	public void verNuevoCapitulo(Serie serie, Integer temporada, Integer capitulo) {
 		String newSerieId = serie.getIdSerie();
 		String newCap;
 		for(AvanceSerie temp: series) {
-			//por cada serie que (ha visto/está viendo) el usuario llamada TEMP
+			//por cada serie que (ha visto/estÃ¡ viendo) el usuario llamada TEMP
 			if (temp.getSerie().getIdSerie() == newSerieId) {
-				//CASO 1: ES UNA SERIE QUE ESTÁ VIENDO
+				//CASO 1: ES UNA SERIE QUE ESTÃ� VIENDO
 				newCap = temp.getSerie().getIdSerie();
 				if(temp.getSerie().getTemporadas().size() > temporada) {
 					newCap = newCap + temporada.toString();
@@ -80,8 +80,8 @@ public class Usuario implements Serializable {
 						temp.setCapitulo(capitulo);
 					}
 				}else {
-					//ERROR: Temporada fuera
-				}
+					//ERROR: Temporada fuera khe
+									}
 				break;
 			}
 		}
