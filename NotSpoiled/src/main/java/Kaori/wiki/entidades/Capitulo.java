@@ -22,6 +22,12 @@ public class Capitulo {
 	@JoinColumn(name = "idTemporada")
 	private Temporada temporada;
 
+	/*
+	 * STAND BY hasta que @Joaquin confirme
+	@OneToMany(MappedBy = "capitulo")
+	List<Snippet> spoilers;
+	*/
+	
 	public String getIdCapitulo() {
 		return idCapitulo;
 	}

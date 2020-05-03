@@ -83,9 +83,8 @@ public class Usuario implements Serializable {
 		return null;
 	}
 	
-	//INCOMPLETO: CASO 1 (FEO), 2 y ERRORES
-	// TODO Implementar mÃ¡s funciones en las demÃ¡s clases para facilitar
-	public void verNuevoCapitulo(Serie serie, Integer temporada, Integer capitulo) {
+	//INCOMPLETO: ERRORES (try catch y otros, por ahora todo lo manejo con NULL)
+	public void ActualizarCapitulo(Serie serie, Integer temporada, Integer capitulo) {
 		AvanceSerie t_serieV = this.getSerieV(serie);
 		Capitulo nuevoCap = serie.getCapitulo(temporada, capitulo);
 		if (t_serieV != null) {
@@ -103,4 +102,5 @@ public class Usuario implements Serializable {
 		//MANEJO DE ERRORES
 		//TODO: todo
 	}
+
 }

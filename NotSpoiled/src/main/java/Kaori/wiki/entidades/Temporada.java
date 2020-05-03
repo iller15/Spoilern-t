@@ -22,7 +22,7 @@ public class Temporada {
 	private String Fecha_Final;
 	
 	@ManyToOne
-	@JoinColumn(name = "idSeries")
+	@JoinColumn(name = "idSerie")
 	private Serie serie;
 	
 	@OneToMany

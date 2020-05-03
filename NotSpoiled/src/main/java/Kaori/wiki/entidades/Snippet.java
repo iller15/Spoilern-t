@@ -5,7 +5,9 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +22,13 @@ public class Snippet {
 	
 	@Column(nullable = true)
 	private List<Personaje> personaje; //Puede no referirse ningun personaje en especifico;
-	// @dante mandame un mensaje cuando veas esto xD,// private Capitulo ultimoCap;
-
+	
+	/*
+	 * STAND BY hasta que @Joaquin confirme
+	@ManyToOne
+	@JoinColumn(name = "idCapitulo")
+	private Capitulo capitulo;
+	*/
 	@ManyToMany(mappedBy = "spoilersEnArticulo")
 	private List<Articulo> articulos;
 	
