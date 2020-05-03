@@ -63,19 +63,26 @@ public class Usuario implements Serializable {
 	// TO DO: 
 	// ----------------------------------------------------------------------------------
 	
-	//INCOMPLETO: CASO 1 (declarado a mitad), 2 y ERRORES
+	//INCOMPLETO: CASO 1 (FEO), 2 y ERRORES
+	// TODO Implementar más funciones en las demás clases para facilitar
 	public void verNuevoCapitulo(Serie serie, Integer temporada, Integer capitulo) {
 		String newSerieId = serie.getIdSerie();
+		String newCap;
 		for(AvanceSerie temp: series) {
 			//por cada serie que (ha visto/está viendo) el usuario llamada TEMP
 			if (temp.getSerie().getIdSerie() == newSerieId) {
 				//CASO 1: ES UNA SERIE QUE ESTÁ VIENDO
+				newCap = temp.getSerie().getIdSerie();
 				if(temp.getSerie().getTemporadas().size() > temporada) {
-					//TODO: SETS de AVANCE SERIE
-					break;
+					newCap = newCap + temporada.toString();
+					if (temp.getSerie().getTemporadas().get(temporada).getCapitulo().size() > capitulo) {
+						newCap = newCap + capitulo.toString();
+						temp.setCapitulo(capitulo);
+					}
 				}else {
 					//ERROR: Temporada fuera
 				}
+				break;
 			}
 		}
 		//CASO 2: La serie no la ha visto
