@@ -54,15 +54,23 @@ public class Serie {
 	public void setTemporadas(List<Temporada> temporadas) {
 		this.temporadas = temporadas;
 	}
-	
 
 	public List<Articulo> getArticulos() {
 		return articulos;
 	}
-
 	public void setArticulos(List<Articulo> articulos) {
 		this.articulos = articulos;
 	}
 
-	
+	//NUEVOS MÉTODOS
+	public void addArticulos(Articulo nuevo) {
+		articulos.add(nuevo);
+	}
+
+	public Capitulo getCapitulo(int temporada, int capitulo) { // Puede ser NULL
+		if(this.temporadas.size() > temporada) {
+			return temporadas.get(temporada).getCapitulo(capitulo); //x2 a lo de null
+		}
+		return null;
+	}
 }

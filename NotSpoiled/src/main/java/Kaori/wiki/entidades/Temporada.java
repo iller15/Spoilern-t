@@ -26,7 +26,7 @@ public class Temporada {
 	private Serie serie;
 	
 	@OneToMany
-	private List<Capitulo> capitulo;
+	private List<Capitulo> capitulos;
 	
 	public String getIdtemporada() {
 		return idtemporada;
@@ -68,15 +68,26 @@ public class Temporada {
 		this.serie = serie;
 	}
 
-	public List<Capitulo> getCapitulo() {
-		return capitulo;
+	public List<Capitulo> getCapitulos() {
+		return capitulos;
 	}
 
-	public void setCapitulo(List<Capitulo> capitulo) {
-		this.capitulo = capitulo;
+	public void setCapitulos(List<Capitulo> capitulos) {
+		this.capitulos = capitulos;
 	} 
 	
+	//GETS / SETS 2.0
 	
-	
+	//MEJORAR PARA MANEJO DE ERRORES (Por ahora valida NULLs)
+	public Capitulo getCapitulo(int numCap){ //Puede ser null
+		for(Capitulo tempCap: capitulos) {
+			if(tempCap.getNumCap() == numCap)
+				return tempCap;
+		}
+		return null;
+	}
+	public void addCapitulo(Capitulo nuevo) {
+		if(nuevo != null) { capitulos.add(nuevo); }
+	}
 	
 }

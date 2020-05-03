@@ -26,12 +26,17 @@ public class AvanceSerie implements Serializable {
 	@JoinColumn(name = "idSerie")
 	private Serie serie;
 	
-	private Integer capitulo;
+	private Capitulo capitulo;
 
+	public AvanceSerie(Usuario usuario, Serie serie, Capitulo capitulo) {
+		this.usuario = usuario;
+		this.serie = serie;
+		this.capitulo = capitulo;
+	}
+	
 	public AvanceSerieKey getIdAvanceSerie() {
 		return idAvanceSerie;
 	}
-
 	public void setIdAvanceSerie(AvanceSerieKey idAvanceSerie) {
 		this.idAvanceSerie = idAvanceSerie;
 	}
@@ -39,7 +44,6 @@ public class AvanceSerie implements Serializable {
 	public Usuario getUsuario() {
 		return usuario;
 	}
-
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
@@ -47,16 +51,14 @@ public class AvanceSerie implements Serializable {
 	public Serie getSerie() {
 		return serie;
 	}
-
 	public void setSerie(Serie serie) {
 		this.serie = serie;
 	}
 
-	public Integer getCapitulo() {
+	public Capitulo getCapitulo() {
 		return capitulo;
 	}
-
-	public void setCapitulo(Integer capitulo) {
+	public void setCapitulo(Capitulo capitulo) {
 		this.capitulo = capitulo;
 	}
 	

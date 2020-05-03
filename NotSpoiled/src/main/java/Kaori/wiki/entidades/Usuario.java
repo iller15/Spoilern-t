@@ -63,31 +63,43 @@ public class Usuario implements Serializable {
 	// TO DO: 
 	// ----------------------------------------------------------------------------------
 	
+	public boolean veSerie(Serie serie) {
+		for (AvanceSerie temp: series) {
+			if (temp.getSerie().getIdSerie() == serie.getIdSerie()) { return true; }
+		}
+		return false;
+	}
+	public AvanceSerie getSerieV(Serie serie) { // posible NULL
+		for (AvanceSerie temp: series) {
+			if (temp.getSerie().getIdSerie() == serie.getIdSerie()) { return temp; }
+		}
+		return null;
+	}
+	public Capitulo ultCapVisto(Serie serie) {  // puede Devoler NULL
+		for(AvanceSerie temp: series) {
+			if(temp.getSerie().getIdSerie() == serie.getIdSerie()) { return temp.getCapitulo(); }
+			return null;
+		}
+		return null;
+	}
+	
 	//INCOMPLETO: CASO 1 (FEO), 2 y ERRORES
 	// TODO Implementar mÃ¡s funciones en las demÃ¡s clases para facilitar
 	public void verNuevoCapitulo(Serie serie, Integer temporada, Integer capitulo) {
-		String newSerieId = serie.getIdSerie();
-		String newCap;
-		for(AvanceSerie temp: series) {
-			//por cada serie que (ha visto/estÃ¡ viendo) el usuario llamada TEMP
-			if (temp.getSerie().getIdSerie() == newSerieId) {
-				//CASO 1: ES UNA SERIE QUE ESTÃ� VIENDO
-				newCap = temp.getSerie().getIdSerie();
-				if(temp.getSerie().getTemporadas().size() > temporada) {
-					newCap = newCap + temporada.toString();
-					if (temp.getSerie().getTemporadas().get(temporada).getCapitulo().size() > capitulo) {
-						newCap = newCap + capitulo.toString();
-						temp.setCapitulo(capitulo);
-					}
-				}else {
-					//ERROR: Temporada fuera
-					//prueba 2
-									}
-				break;
+		AvanceSerie t_serieV = this.getSerieV(serie);
+		Capitulo nuevoCap = serie.getCapitulo(temporada, capitulo);
+		if (t_serieV != null) {
+			//CASO 1: ES UNA SERIE QUE ESTÁ VIENDO
+			if(nuevoCap != null) {
+				t_serieV.setCapitulo(nuevoCap);
 			}
+		}else {
+			//CASO 2: La serie no la ha visto
+			if(nuevoCap != null) {
+				t_serieV = new AvanceSerie(this,serie, nuevoCap);
+			}
+			//NO HACE NADA SI EL INPUT ES INVALIDO
 		}
-		//CASO 2: La serie no la ha visto
-		//TODO: todo
 		//MANEJO DE ERRORES
 		//TODO: todo
 	}
