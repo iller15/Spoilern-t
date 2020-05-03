@@ -27,7 +27,6 @@ public class Temporada {
 	
 	@OneToMany
 	private List<Capitulo> capitulo;
-
 	
 	public String getIdtemporada() {
 		return idtemporada;

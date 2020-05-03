@@ -23,6 +23,9 @@ public class Serie {
 	@OneToMany(mappedBy = "serie")
 	private List<Articulo> articulos;
 	
+	@OneToMany(mappedBy = "serie")
+	List<AvanceSerie> usuarios;
+	
 	//Getters and setters
 	public String getIdSerie() {
 		return idSerie;
