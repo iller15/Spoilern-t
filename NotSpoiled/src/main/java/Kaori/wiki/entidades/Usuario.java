@@ -80,7 +80,8 @@ public class Usuario implements Serializable {
 						temp.setCapitulo(capitulo);
 					}
 				}else {
-					//ERROR: Temporada fuera khe
+					//ERROR: Temporada fuera
+					//prueba 2
 									}
 				break;
 			}
