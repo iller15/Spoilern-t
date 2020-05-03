@@ -26,7 +26,7 @@ public class AvanceSerie implements Serializable {
 	@JoinColumn(name = "idSerie")
 	private Serie serie;
 	
-	private Capitulo capitulo;
+	private Integer capitulo;
 
 	public AvanceSerieKey getIdAvanceSerie() {
 		return idAvanceSerie;
@@ -52,11 +52,11 @@ public class AvanceSerie implements Serializable {
 		this.serie = serie;
 	}
 
-	public Capitulo getCapitulo() {
+	public Integer getCapitulo() {
 		return capitulo;
 	}
 
-	public void setCapitulo(Capitulo capitulo) {
+	public void setCapitulo(Integer capitulo) {
 		this.capitulo = capitulo;
 	}
 	

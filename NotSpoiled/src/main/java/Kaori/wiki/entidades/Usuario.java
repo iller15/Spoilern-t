@@ -63,8 +63,24 @@ public class Usuario implements Serializable {
 	// TO DO: 
 	// ----------------------------------------------------------------------------------
 	
-	//INCOMPLETO
+	//INCOMPLETO: CASO 1 (declarado a mitad), 2 y ERRORES
 	public void verNuevoCapitulo(Serie serie, Integer temporada, Integer capitulo) {
-		
+		String newSerieId = serie.getIdSerie();
+		for(AvanceSerie temp: series) {
+			//por cada serie que (ha visto/está viendo) el usuario llamada TEMP
+			if (temp.getSerie().getIdSerie() == newSerieId) {
+				//CASO 1: ES UNA SERIE QUE ESTÁ VIENDO
+				if(temp.getSerie().getTemporadas().size() > temporada) {
+					//TODO: SETS de AVANCE SERIE
+					break;
+				}else {
+					//ERROR: Temporada fuera
+				}
+			}
+		}
+		//CASO 2: La serie no la ha visto
+		//TODO: todo
+		//MANEJO DE ERRORES
+		//TODO: todo
 	}
 }

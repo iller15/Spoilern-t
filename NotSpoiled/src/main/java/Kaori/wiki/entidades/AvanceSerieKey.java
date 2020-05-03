@@ -57,5 +57,4 @@ public class AvanceSerieKey implements Serializable {
 			return false;
 		return true;
 	}
-
 }
