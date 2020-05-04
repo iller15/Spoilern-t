@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import Kaori.wiki.entidades.Articulo;
+import Kaori.wiki.entidades.Capitulo;
+import Kaori.wiki.entidades.Serie;
 import Kaori.wiki.entidades.Snippet;
 import Kaori.wiki.entidades.Usuario;
 import Kaori.wiki.repositorios.Articulo_Repositorio;
@@ -73,5 +75,25 @@ public class Servicios_web {
 	public Articulo obtenerArticulo(Long id){
 		Optional<Articulo> aux = this.articulo_Repositorio.findById(id);
 		return aux.get();
+	}
+	//EN TEORÍA LA DE SEARCH BAR
+	public List<Articulo> obtenerArticulo(String busqueda) {
+		String[] aux = busqueda.split(" ");
+		List<Articulo> articulos = this.obtenerArticulos();
+		List<Articulo> res = new ArrayList<Articulo>();
+		for(Articulo auxArt:articulos) {
+			if(auxArt.getTituloArticulo() == busqueda || auxArt.getSerie().getNombre() == busqueda){
+				res.add(auxArt);
+			}else{
+				for(short i = 0; i < aux.length;i++) {
+					if (auxArt.getSerie().getNombre() == aux[i]) { res.add(auxArt); }
+				}
+			}
+		}
+		return articulos;
+	}
+	
+	public void actualizarAvanceSerie(Usuario usuario, Serie serie, Integer temporada, Integer capitulo) {
+		usuario.ActualizarCapitulo(serie, temporada, capitulo);
 	}
 }

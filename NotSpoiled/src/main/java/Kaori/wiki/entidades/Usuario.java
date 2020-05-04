@@ -116,6 +116,5 @@ public class Usuario implements Serializable {
 		//MANEJO DE ERRORES
 		//TODO: todo
 	}
-
 	
 }
