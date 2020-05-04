@@ -94,11 +94,20 @@ public class Serie {
 			this.personajes.add(nuevo);
 		}
 	}
-	public void addTemporada(Temporada nueva) {
+	public void addTemporada(Temporada nueva) { // Nueva temporada (ya creada)
 		if(nueva != null) {
 			this.temporadas.add(nueva);
 		}
 	}
+	public void addTemporada() { // Nueva Temporada de Serie en Emisión
+		Temporada nueva = new Temporada(this.temporadas.size()+1, " ", this);
+		this.temporadas.add(nueva); //alternativamente usar addTemporada(nueva)
+	}
+	public void addTemporada(String fechaInicio) {
+		Temporada nueva = new Temporada(this.temporadas.size()+1, fechaInicio, this);
+		this.temporadas.add(nueva);
+	}
+	
 	//Pueden ser NULL
 	public Capitulo getCapitulo(int temporada, int capitulo) {
 		if(this.temporadas.size() > temporada) {
@@ -112,11 +121,4 @@ public class Serie {
 		}
 		return null;
 	}
-	//TODO Sobrecargar para añadir FECHA(s)
-	//Ahora: nuevaTemporada - anuncio de una nueva temp. de serie en emisión
-	public void nuevaTemporada() {
-		Temporada nueva = new Temporada(this.temporadas.size()+1, " ", this);
-		this.temporadas.add(nueva);
-	}
-
 }

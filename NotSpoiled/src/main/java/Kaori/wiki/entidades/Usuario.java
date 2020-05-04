@@ -1,6 +1,7 @@
 package Kaori.wiki.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,7 +23,9 @@ public class Usuario implements Serializable {
 	private String password;
 	@OneToMany(mappedBy = "usuario")
 	List<AvanceSerie> series;
-	private String correo; // InformaciÃ³n de contacto :p
+	private String correo;
+	private boolean banned;
+	
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
@@ -47,21 +50,31 @@ public class Usuario implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public List<AvanceSerie> getSeries() {
+	public List<AvanceSerie> getAvancesSeries() {
 		return series;
 	}
-	/* Sin SET porque no tiene sentido */
+	public List<Serie> getSeries(){
+		List<Serie> listaSeries = new ArrayList<Serie>();
+		for(AvanceSerie veo:series) { listaSeries.add(veo.getSerie()); }
+		return listaSeries;
+	}
+	//add implementado en Funciones
 	
-	public String getCorreo() {
+ 	public String getCorreo() {
 		return correo;
+	}
+	public boolean isBanned() {
+		return banned;
+	}
+	public void setBanned(boolean banned) {
+		this.banned = banned;
 	}
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
 	
-	// TO DO: 
+	// FUNCIONES: 
 	// ----------------------------------------------------------------------------------
-	
 	public boolean veSerie(Serie serie) {
 		for (AvanceSerie temp: series) {
 			if (temp.getSerie().getIdSerie() == serie.getIdSerie()) { return true; }
@@ -82,7 +95,8 @@ public class Usuario implements Serializable {
 		return null;
 	}
 	
-	//INCOMPLETO: ERRORES (try catch y otros, por ahora todo lo manejo con NULL)
+	//INCOMPLETO: ERRORES (try catch y otros >>> manejo con NULL actualmente)
+	//DONE: Serie que ve o serie nueva
 	public void ActualizarCapitulo(Serie serie, Integer temporada, Integer capitulo) {
 		AvanceSerie t_serieV = this.getSerieV(serie);
 		Capitulo nuevoCap = serie.getCapitulo(temporada, capitulo);
@@ -95,6 +109,7 @@ public class Usuario implements Serializable {
 			//CASO 2: La serie no la ha visto
 			if(nuevoCap != null) {
 				t_serieV = new AvanceSerie(this,serie, nuevoCap);
+				this.series.add(t_serieV);
 			}
 			//NO HACE NADA SI EL INPUT ES INVALIDO
 		}
