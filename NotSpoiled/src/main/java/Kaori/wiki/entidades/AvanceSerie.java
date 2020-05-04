@@ -2,11 +2,13 @@ package Kaori.wiki.entidades;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +28,8 @@ public class AvanceSerie implements Serializable {
 	@JoinColumn(name = "idSerie")
 	private Serie serie;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idCapitulo", referencedColumnName = "id")
 	private Capitulo capitulo;
 
 	public AvanceSerie(Usuario usuario, Serie serie, Capitulo capitulo) {

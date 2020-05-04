@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -15,6 +16,7 @@ import javax.persistence.Table;
 @Table(name = "Capitulos")
 public class Capitulo {
 	@Id
+	@Column(name = "id")
 	private String idCapitulo;
 	private int numCap;
 	private String tituloCap;
@@ -25,6 +27,9 @@ public class Capitulo {
 
 	@OneToMany(mappedBy = "capitulo")
 	List<Snippet> spoilers;
+	
+	@OneToMany(mappedBy = "capitulo")
+	List<AvanceSerie> avances;
 	
 	public Capitulo(Temporada temporada, Integer numCap, String titulo) {
 		this.idCapitulo = temporada.getIdtemporada() + numCap.toString();

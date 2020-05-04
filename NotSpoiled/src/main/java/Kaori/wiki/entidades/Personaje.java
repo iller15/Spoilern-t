@@ -1,8 +1,13 @@
 package Kaori.wiki.entidades;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -17,6 +22,15 @@ public class Personaje {
 	@JoinColumn(name = "idSeries")
 	private Serie serie;
 
+	@ManyToMany
+	(cascade = {CascadeType.ALL})
+	@JoinTable(
+			name = "Personaje_Snippet_tlb",
+			joinColumns = @JoinColumn(name = "idPersonaje"),
+			inverseJoinColumns = @JoinColumn(name = "idSnippet")
+	)
+	private List<Snippet> snippets;
+	
 	public String getIdPersonaje() {
 		return idPersonaje;
 	}

@@ -22,4 +22,8 @@ public class kaoriRest {
 		return servicio.registrarUsuario(usuario);
 	}
 	
+	@RequestMapping(path = "/test")
+    public String testto() {
+        return "Holo, funciono!";
+    }
 }

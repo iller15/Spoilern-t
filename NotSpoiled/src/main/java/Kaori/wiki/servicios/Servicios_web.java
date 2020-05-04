@@ -30,7 +30,7 @@ public class Servicios_web {
 	Articulo_Repositorio articulo_Repositorio;
 	@Autowired
 	AvanceSerie_Repositorio  avanceSerie_Repositorio;
-	AvanceSerieKey_Respositorio avanceSerieKey_Respositorio;
+	//AvanceSerieKey_Respositorio avanceSerieKey_Respositorio;
 	@Autowired
 	Capitulo_Repositorio capitulo_Repositorio;
 	@Autowired

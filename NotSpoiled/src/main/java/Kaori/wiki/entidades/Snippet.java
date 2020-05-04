@@ -20,14 +20,15 @@ public class Snippet {
 	private String description;
 	private String texto;
 	
-	@Column(nullable = true)
+	//@Column(nullable = true)
+	@ManyToMany(mappedBy = "snippets")
 	private List<Personaje> personaje; //Puede no referirse ningun personaje en especifico;
 	
 	@ManyToOne
 	@JoinColumn(name = "idCapitulo")
 	private Capitulo capitulo;
 	
-	@ManyToMany(mappedBy = "spoilersEnArticulo")
+	@ManyToMany(mappedBy = "spoilers")
 	private List<Articulo> articulos;
 	
 	public String getIdSnippet() {
