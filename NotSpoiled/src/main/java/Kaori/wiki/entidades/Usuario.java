@@ -18,8 +18,7 @@ public class Usuario implements Serializable {
 	@Id
 	private Long idUsuario;
 	private String nombreUsuario;
-	private Integer nivelUsuario; 	//CategorÃ­as (SerÃ­a mÃ¡s fÃ¡cil tenerlo numÃ©rico en
-									// backend y pasarlo a String para la UI no?)
+	private Integer nivelUsuario; 
 	private String password;
 	@OneToMany(mappedBy = "usuario")
 	List<AvanceSerie> series;
@@ -51,8 +50,8 @@ public class Usuario implements Serializable {
 	public List<AvanceSerie> getSeries() {
 		return series;
 	}
-	/* Sin SET porque no tiene sentido, TODO Armar funcion para "Ver" un capitulo
-	 * */
+	/* Sin SET porque no tiene sentido */
+	
 	public String getCorreo() {
 		return correo;
 	}
@@ -103,4 +102,5 @@ public class Usuario implements Serializable {
 		//TODO: todo
 	}
 
+	
 }

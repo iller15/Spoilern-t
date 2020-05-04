@@ -1,8 +1,11 @@
 package Kaori.wiki.entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -11,6 +14,7 @@ import javax.persistence.Table;
 @Table(name = "Series")
 public class Serie {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String idSerie;
 	private String nombre;
 	
@@ -25,6 +29,12 @@ public class Serie {
 	
 	@OneToMany(mappedBy = "serie")
 	List<AvanceSerie> usuarios;
+	
+	public Serie() {
+		this.personajes = new ArrayList<Personaje>();
+		this.temporadas = new ArrayList<Temporada>();
+		this.usuarios = new ArrayList<AvanceSerie>();
+	}
 	
 	//Getters and setters
 	public String getIdSerie() {
@@ -62,15 +72,51 @@ public class Serie {
 		this.articulos = articulos;
 	}
 
+	//get / set modificados
+	public List<Usuario> getUsuarios(){
+		List<Usuario> resUsuarios = new ArrayList<Usuario>();
+		for(AvanceSerie auxTemp:usuarios) {
+			resUsuarios.add(auxTemp.getUsuario());
+		}
+		return resUsuarios;
+	}
+	
 	//NUEVOS MÉTODOS
+	
 	public void addArticulos(Articulo nuevo) {
+		for(Articulo auxArt: articulos) {
+			if(auxArt.getIdArticulo() == nuevo.getIdArticulo() || nuevo == null) { return; }
+		}
 		articulos.add(nuevo);
 	}
-
-	public Capitulo getCapitulo(int temporada, int capitulo) { // Puede ser NULL
+	public void addPersonaje(Personaje nuevo) {
+		if(nuevo != null) {
+			this.personajes.add(nuevo);
+		}
+	}
+	public void addTemporada(Temporada nueva) {
+		if(nueva != null) {
+			this.temporadas.add(nueva);
+		}
+	}
+	//Pueden ser NULL
+	public Capitulo getCapitulo(int temporada, int capitulo) {
 		if(this.temporadas.size() > temporada) {
-			return temporadas.get(temporada).getCapitulo(capitulo); //x2 a lo de null
+			return temporadas.get(temporada).getCapitulo(capitulo);
 		}
 		return null;
 	}
+	public Temporada getTemporada(int temporada) {
+		if(this.temporadas.size() > temporada) {
+			return this.temporadas.get(temporada);
+		}
+		return null;
+	}
+	//TODO Sobrecargar para añadir FECHA(s)
+	//Ahora: nuevaTemporada - anuncio de una nueva temp. de serie en emisión
+	public void nuevaTemporada() {
+		Temporada nueva = new Temporada(this.temporadas.size()+1, " ", this);
+		this.temporadas.add(nueva);
+	}
+
 }

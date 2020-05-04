@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Temporada {
 	
 	@Id
-	private String idtemporada;
+	private String idtemporada; // GENERADA EN CONSTRUCTOR (idk si funciona con postman :| )
 	//Numero de Temporada;
 	private int numTemporada;
 	//Fechas de emision de la serie.
@@ -27,6 +27,12 @@ public class Temporada {
 	
 	@OneToMany
 	private List<Capitulo> capitulos;
+	
+	public Temporada(Integer numTemporada, String fechaInicio, Serie serie) {
+		this.idtemporada = serie.getIdSerie() + numTemporada.toString();
+		this.numTemporada = numTemporada;
+		this.Fecha_inicio = fechaInicio;
+	}
 	
 	public String getIdtemporada() {
 		return idtemporada;
@@ -86,8 +92,14 @@ public class Temporada {
 		}
 		return null;
 	}
+	
 	public void addCapitulo(Capitulo nuevo) {
 		if(nuevo != null) { capitulos.add(nuevo); }
 	}
+	public void addCapitulo(String titulo) {
+		Capitulo nuevo = new Capitulo(this,this.capitulos.size()+1,titulo);
+		capitulos.add(nuevo);
+	}
+
 	
 }

@@ -23,12 +23,10 @@ public class Snippet {
 	@Column(nullable = true)
 	private List<Personaje> personaje; //Puede no referirse ningun personaje en especifico;
 	
-	/*
-	 * STAND BY hasta que @Joaquin confirme
 	@ManyToOne
 	@JoinColumn(name = "idCapitulo")
 	private Capitulo capitulo;
-	*/
+	
 	@ManyToMany(mappedBy = "spoilersEnArticulo")
 	private List<Articulo> articulos;
 	
@@ -64,7 +62,21 @@ public class Snippet {
 		this.personaje = personaje;
 	}
 	
-	
-	
+
+	public Capitulo getCapitulo() {
+		return capitulo;
+	}
+
+	public void setCapitulo(Capitulo capitulo) {
+		this.capitulo = capitulo;
+	}
+
+	public List<Articulo> getArticulos() {
+		return articulos;
+	}
+
+	public void setArticulos(List<Articulo> articulos) {
+		this.articulos = articulos;
+	}
 	
 }

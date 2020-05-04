@@ -2,6 +2,7 @@ package Kaori.wiki.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -26,10 +27,7 @@ public class Articulo implements Serializable {
 	private String tituloArticulo;
 	private Date fechaPublicacion;
 	//private List<String> palabrasClave;
-	//Otra vez estoy pensando en cómo hacer esto bien para facilitar el proceso de búsqueda
-	//Que maybe deba aparecer una tabla PalabraClave (ManyToMany) y 
-	//Búsqueda busca por palabras sucede por Serie, Personaje, o palabras 
-	//(Biografía, Boda, Impacto, idk xd, tampoco sería tan extenso)
+	//Aún en consideración???????????????
 	
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(
@@ -37,14 +35,14 @@ public class Articulo implements Serializable {
 			joinColumns = @JoinColumn(name = "idArticulo"),
 			inverseJoinColumns = @JoinColumn(name = "idSnippet")
 	)
-	private List<Snippet> spoilersEnArticulo;
-	// private List<Integer> ordenSnippets; // Para mantener el orden de escritura
-	// INNECESARIO A MENOS QUE SE QUIERA ORDENAR CON STRINGS EN MEDIO
+	private List<Snippet> spoilers;
+	// List como LISTA ENLAZADA en Funcion getArticuloCensura
 	
 	@ManyToOne
 	@JoinColumn(name = "idSeries")
-	private Serie serie; //De qué serie hablamos
-
+	private Serie serie;
+	
+	//GET & SET
 	public Long getIdArticulo() {
 		return idArticulo;
 	}
@@ -66,20 +64,13 @@ public class Articulo implements Serializable {
 		this.fechaPublicacion = fechaPublicacion;
 	}
 
-	public List<Snippet> getSpoilersEnArticulo() {
-		return spoilersEnArticulo;
+	public List<Snippet> getSpoilers() {
+		return spoilers;
 	}
-	public void setSpoilersEnArticulo(List<Snippet> spoilersEnArticulo) {
-		this.spoilersEnArticulo = spoilersEnArticulo;
+	public void setSpoilers(List<Snippet> spoilersEnArticulo) {
+		this.spoilers = spoilersEnArticulo;
 	}
-/*
-	public List<Integer> getOrdenSnippets() {
-		return ordenSnippets;
-	}
-	public void setOrdenSnippets(List<Integer> ordenSnippets) {
-		this.ordenSnippets = ordenSnippets;
-	}
-*/
+
 	public Serie getSerie() {
 		return serie;
 	}
@@ -87,4 +78,19 @@ public class Articulo implements Serializable {
 		this.serie = serie;
 	}
 
+	//FUNCIONES
+	
+	//ERROR AL QUERER INCIAR LIST EN NULL :C
+	// LIST DECLARADA COMO LISTA ENLAZADA
+	
+	public List<Snippet> getArticuloCensura(Capitulo capitulo){
+		List<Snippet> articuloFinal = new LinkedList<Snippet>();
+		for (Snippet spoiler: spoilers) {
+			if(spoiler.getCapitulo().mayorA(capitulo)) {
+				articuloFinal.add(spoiler);
+			}
+		}
+		return articuloFinal;
+	}
+	
 }
