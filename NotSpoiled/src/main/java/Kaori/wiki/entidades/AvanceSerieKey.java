@@ -1,16 +1,25 @@
-package Kaori.wiki.entidades;
+/*package Kaori.wiki.entidades;
 
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Embeddable
+//@Embeddable
+//@Entity
+//@Table(name = "AvanceSerieKey")
 public class AvanceSerieKey implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	Long id;
+	
 	@Column(name = "Id_Usuario")
 	Long idUsuario;
+	
 	@Column(name = "Id_Serie")
 	Long idSerie;
 	
@@ -58,3 +67,4 @@ public class AvanceSerieKey implements Serializable {
 		return true;
 	}
 }
+*/

@@ -11,11 +11,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Series")
+@Table(name = "Series_TP")
 public class Serie {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String idSerie;
+	
 	private String nombre;
 	
 	@OneToMany(mappedBy = "serie")
