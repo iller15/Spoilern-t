@@ -63,6 +63,9 @@ public class Servicios_web {
 		}
 		return tocayos;
 	}
+	public List<Usuario> obtenerUsuarios(){
+		return this.usuario_Repositorio.findAll();
+	}
 	
 	@Transactional
 	public Articulo registrarArticulo(Articulo nuevo) {

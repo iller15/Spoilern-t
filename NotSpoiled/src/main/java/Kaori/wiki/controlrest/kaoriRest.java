@@ -1,5 +1,7 @@
 package Kaori.wiki.controlrest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,15 @@ public class kaoriRest {
 	@PostMapping("/regusuario")
 	public Usuario registrarUsuario(@RequestBody Usuario usuario) {
 		return servicio.registrarUsuario(usuario);
+	}
+/*	@PostMapping("/regserie")
+	public Serie registrarUsuario(@RequestBody Serie serie) {
+		
+	}
+*/	
+	@GetMapping("/usuarios")
+	public List<Usuario> verUsuarios(){
+		return servicio.obtenerUsuarios();
 	}
 	
 	@RequestMapping(path = "/test")

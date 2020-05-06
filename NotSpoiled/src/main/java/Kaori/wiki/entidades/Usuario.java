@@ -30,6 +30,10 @@ public class Usuario implements Serializable {
 	private String correo;
 	private boolean banned;
 	
+	public Usuario() {
+		
+	}
+	
 	public Long getIdUsuario() {
 		return idUsuario;
 	}

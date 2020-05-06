@@ -17,18 +17,6 @@ import javax.persistence.Table;
 public class AvanceSerie implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	//@EmbeddedId
-	//private AvanceSerieKey idAvanceSerie;
-	
-	/*@ManyToOne
-	@MapsId("Id_Usuario")
-	@JoinColumn(name = "Id_Usuario")
-	private Usuario usuario;
-	@ManyToOne
-	@MapsId("Id_Serie")
-	@JoinColumn(name = "Id_Serie")
-	private Serie serie;*/
-	
 	@Id
 	private Long idAvanceSerie;
 	
