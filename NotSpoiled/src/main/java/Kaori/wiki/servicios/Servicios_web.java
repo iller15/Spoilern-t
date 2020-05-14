@@ -50,6 +50,13 @@ public class Servicios_web {
 		return snippet_Repositorio.save(snippet);
 	}
 	
+	public List<Snippet> listarSnippet(){ //deberiamos poner un condicionl para que solo admins tengan acceso
+		return this.snippet_Repositorio.findAll();
+	}
+	
+	
+	
+	
 	@Transactional
 	public Usuario registrarUsuario(Usuario nuevo) {
 		return usuario_Repositorio.save(nuevo);

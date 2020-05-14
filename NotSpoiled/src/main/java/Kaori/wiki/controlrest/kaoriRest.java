@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import Kaori.wiki.entidades.Snippet;
 import Kaori.wiki.entidades.Usuario;
 import Kaori.wiki.servicios.Servicios_web;
 
@@ -37,4 +38,14 @@ public class kaoriRest {
     public String testto() {
         return "Holo, funciono!";
     }
+	
+	@PostMapping("/snippet")
+	public Snippet registrarSnippet(@RequestBody Snippet snippet) {
+		return servicio.registrarSnippet(snippet);
+	}
+	
+	@GetMapping("/snippetList")
+	public List<Snippet> listarSnippet(){
+		return servicio.listarSnippet();
+	}
 }
