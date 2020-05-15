@@ -44,7 +44,7 @@ public class kaoriRest {
 		return servicio.registrarSnippet(snippet);
 	}
 	
-	@GetMapping("/snippetList")
+	@GetMapping("/listSnippet")
 	public List<Snippet> listarSnippet(){
 		return servicio.listarSnippet();
 	}
