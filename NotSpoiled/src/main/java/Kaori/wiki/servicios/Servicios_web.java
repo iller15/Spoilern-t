@@ -12,6 +12,7 @@ import Kaori.wiki.entidades.Articulo;
 import Kaori.wiki.entidades.Capitulo;
 import Kaori.wiki.entidades.Serie;
 import Kaori.wiki.entidades.Snippet;
+import Kaori.wiki.entidades.Temporada;
 import Kaori.wiki.entidades.Usuario;
 import Kaori.wiki.repositorios.Articulo_Repositorio;
 //import Kaori.wiki.repositorios.AvanceSerieKey_Respositorio;
@@ -44,7 +45,26 @@ public class Servicios_web {
 	@Autowired
 	Usuario_Repositorio usuario_Repositorio;
 	
-	//Funciones de la pagina;
+	//AUXILIAR
+	public static Boolean similares(String s1, String s2) { //S1: Original | S2: Busqueda
+	    if(s1 == s2) { return true; }
+	    s1 = s1.toLowerCase();
+	    s2 = s2.toLowerCase();
+	    int iguales = 0;
+	    int umbral = s1.length()*(3/5);
+	    for(int i = 0; i < s1.length(); i++) {
+	    	for(int j = 0; j < s2.length(); j++) {
+	    		if(s1.charAt(i) == s2.charAt(j)) { iguales++; }
+	    		else if (s1.charAt(i) != s2.charAt(j)) {
+	    			if(iguales > umbral) { return true; }
+	    		}
+	    	}
+	    }
+	    return false;
+	}
+	
+	//--------------------------------------------------------------------
+	//FUNCIONES DE LA PAGINA Y ENTIDADES
 	
 	public Snippet registrarSnippet(Snippet snippet) {
 		return snippet_Repositorio.save(snippet);
@@ -53,8 +73,6 @@ public class Servicios_web {
 	public List<Snippet> listarSnippet(){ //deberiamos poner un condicionl para que solo admins tengan acceso
 		return this.snippet_Repositorio.findAll();
 	}
-	
-	
 	
 	
 	@Transactional
@@ -107,6 +125,7 @@ public class Servicios_web {
 		usuario.ActualizarCapitulo(serie, temporada, capitulo);
 	}
 	
+	//TODO: FORMULARIOS EN FRONT
 	public Serie registrarSerie(Serie nuevo) {
 		return serie_Repositorio.save(nuevo);
 	}
@@ -114,11 +133,13 @@ public class Servicios_web {
 		//TODO: APRENDER QUERYS
 		List<Serie> series = (List<Serie>) serie_Repositorio.findAll();
 		for(Serie aux:series) {
-			if(aux.getNombre() == titulo) {
+			if(this.similares(aux.getNombre(),titulo)) {
 				return aux;
 			}
 		}
 		return null;
 	}
-	
+	public void addTemporada(Serie serie, Temporada temporada) {
+		serie.addTemporada(temporada);
+	}
 }
