@@ -89,6 +89,7 @@ public class Serie {
 		}
 		articulos.add(nuevo);
 	}
+	
 	public void addPersonaje(Personaje nuevo) {
 		if(nuevo != null) {
 			this.personajes.add(nuevo);

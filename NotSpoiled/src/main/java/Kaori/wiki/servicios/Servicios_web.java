@@ -106,4 +106,19 @@ public class Servicios_web {
 	public void actualizarAvanceSerie(Usuario usuario, Serie serie, Integer temporada, Integer capitulo) {
 		usuario.ActualizarCapitulo(serie, temporada, capitulo);
 	}
+	
+	public Serie registrarSerie(Serie nuevo) {
+		return serie_Repositorio.save(nuevo);
+	}
+	public Serie buscarSerie(String titulo) {
+		//TODO: APRENDER QUERYS
+		List<Serie> series = (List<Serie>) serie_Repositorio.findAll();
+		for(Serie aux:series) {
+			if(aux.getNombre() == titulo) {
+				return aux;
+			}
+		}
+		return null;
+	}
+	
 }
