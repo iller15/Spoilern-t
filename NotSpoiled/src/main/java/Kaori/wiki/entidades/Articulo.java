@@ -16,7 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Articulos")
@@ -31,7 +31,7 @@ public class Articulo implements Serializable {
 	//private List<String> palabrasClave;
 	//Aún en consideración???????????????
 	
-	@JsonIgnoreProperties
+	@JsonIgnore
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(
 			name = "Articulo_Serie_tlb",
@@ -41,6 +41,7 @@ public class Articulo implements Serializable {
 	private List<Snippet> spoilers;
 	// List como LISTA ENLAZADA en Funcion getArticuloCensura
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "idSeries")
 	private Serie serie;

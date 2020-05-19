@@ -8,7 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "Series_TP")
@@ -18,19 +19,19 @@ public class Serie {
 	
 	private String nombre;
 	
-	@JsonIgnoreProperties
+	@JsonIgnore
 	@OneToMany(mappedBy = "serie")
 	private List<Personaje> personajes;
 	
-	@JsonIgnoreProperties
+	@JsonIgnore
 	@OneToMany(mappedBy = "serie")
 	private List<Temporada> temporadas;
 	
-	@JsonIgnoreProperties
+	@JsonIgnore
 	@OneToMany(mappedBy = "serie")
 	private List<Articulo> articulos;
 	
-	@JsonIgnoreProperties
+	@JsonIgnore
 	@OneToMany(mappedBy = "serie")
 	List<AvanceSerie> usuarios;
 	

@@ -10,7 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Snippet")
@@ -24,16 +24,16 @@ public class Snippet {
 	
 	
 	//@Column(nullable = true)
-	@JsonIgnoreProperties
+	@JsonIgnore
 	@ManyToMany(mappedBy = "snippets")
 	private List<Personaje> personaje; //Puede ser null
 	
-	@JsonIgnoreProperties
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "idCapitulo")
 	private Capitulo capitulo;
 	
-	@JsonIgnoreProperties
+	@JsonIgnore
 	@ManyToMany(mappedBy = "spoilers")
 	private List<Articulo> articulos;
 	

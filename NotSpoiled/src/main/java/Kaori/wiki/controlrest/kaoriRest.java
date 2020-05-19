@@ -105,6 +105,11 @@ public class kaoriRest {
 		return servicio.registrarCapitulo(capitulo);
 	}
 	
+	@GetMapping("/listCapitulo")
+	public List<Capitulo> listCapitulo(){
+		return servicio.listarCapitulo();
+	}
+	
 	
 //SNNIPPET
 	

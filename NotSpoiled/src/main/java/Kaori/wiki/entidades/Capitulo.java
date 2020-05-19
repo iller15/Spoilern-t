@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Capitulos")
@@ -22,14 +22,16 @@ public class Capitulo {
 	private int numCap;
 	private String tituloCap;
 	
-	@JsonIgnoreProperties
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "idTemporada")
 	private Temporada temporada;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "capitulo")
 	List<Snippet> spoilers;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "capitulo")
 	List<AvanceSerie> avances;
 	

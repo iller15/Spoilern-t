@@ -4,16 +4,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Generated;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Usuarios") //SEGÃšN ESQUEMA YA ESCRITO
@@ -25,6 +25,8 @@ public class Usuario implements Serializable {
 	private String nombreUsuario;
 	private Integer nivelUsuario; 
 	private String password;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	List<AvanceSerie> series;
 	private String correo;

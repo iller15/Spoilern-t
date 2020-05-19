@@ -11,6 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Personajes")
 public class Personaje {
@@ -18,10 +20,12 @@ public class Personaje {
 	private String idPersonaje;
 	private String Nombre;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "idSeries")
 	private Serie serie;
 
+	@JsonIgnore
 	@ManyToMany
 	(cascade = {CascadeType.ALL})
 	@JoinTable(

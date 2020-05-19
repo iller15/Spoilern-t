@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Temporadas")
@@ -24,11 +24,12 @@ public class Temporada {
 	private String Fecha_Inicio;
 	private String Fecha_Final;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "idSerie")
 	private Serie serie;
 	
-	@JsonIgnoreProperties
+	@JsonIgnore
 	@OneToMany
 	private List<Capitulo> capitulos;
 	
