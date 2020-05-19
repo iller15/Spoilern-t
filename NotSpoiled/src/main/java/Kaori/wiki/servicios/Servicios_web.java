@@ -79,14 +79,16 @@ public class Servicios_web {
 	public Usuario registrarUsuario(Usuario nuevo) {
 		return usuario_Repositorio.save(nuevo);
 	}
-	//POR FAVOR LEER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	public List<Usuario> buscarUsuario(String nombre){
+	//ESTRICTO
+	public Usuario buscarUsuarioNombre(String nombre){
 		List<Usuario> todos = this.usuario_Repositorio.findAll();
-		List<Usuario> tocayos = new ArrayList<Usuario>();
 		for(Usuario usuario:todos) {
-			if (usuario.getNombreUsuario() == nombre) { tocayos.add(usuario); }
+			if (usuario.getNombreUsuario() == nombre) { return usuario; }
 		}
-		return tocayos;
+		return null;
+	}
+	public Usuario buscarUsuarioId(Long idUsuario) {
+		return usuario_Repositorio.findById(idUsuario).get();
 	}
 	public List<Usuario> obtenerUsuarios(){
 		return this.usuario_Repositorio.findAll();
@@ -129,7 +131,7 @@ public class Servicios_web {
 	public Serie registrarSerie(Serie nuevo) {
 		return serie_Repositorio.save(nuevo);
 	}
-	public Serie buscarSerie(String titulo) {
+	public Serie buscarSerieTitulo(String titulo) {
 		//TODO: APRENDER QUERYS
 		List<Serie> series = (List<Serie>) serie_Repositorio.findAll();
 		for(Serie aux:series) {
@@ -139,7 +141,14 @@ public class Servicios_web {
 		}
 		return null;
 	}
+	public Serie buscarSerieId(String idSerie) {
+		return serie_Repositorio.findById(idSerie).get();
+	}
 	public void addTemporada(Serie serie, Temporada temporada) {
 		serie.addTemporada(temporada);
 	}
+	public void addCapitulo(Serie serie, Integer temporada, Capitulo nuevo) {
+		serie.getTemporada(temporada).addCapitulo(nuevo);
+	}
+	
 }

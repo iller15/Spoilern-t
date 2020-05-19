@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import Kaori.wiki.entidades.AvanceSerie;
+import Kaori.wiki.entidades.Serie;
 import Kaori.wiki.entidades.Snippet;
 import Kaori.wiki.entidades.Usuario;
 import Kaori.wiki.servicios.Servicios_web;
@@ -24,11 +26,20 @@ public class kaoriRest {
 	public Usuario registrarUsuario(@RequestBody Usuario usuario) {
 		return servicio.registrarUsuario(usuario);
 	}
-/*	@PostMapping("/regserie")
+	@PostMapping("/regserie")
 	public Serie registrarUsuario(@RequestBody Serie serie) {
-		
+		return servicio.registrarSerie(serie);
 	}
-*/	
+	//TODO: SOLO COMO TESTEO
+	@PostMapping("/actualiza/{usuario}/{serie}")
+	public String actualizarSerie(@PathVariable(value = "usuario") Long usuarioId, @PathVariable(value = "serie") String serieId) {
+		//TODO: Formulario
+		Usuario usuario = servicio.buscarUsuarioId(usuarioId);
+		Serie serie = servicio.buscarSerieId(serieId);
+		servicio.actualizarAvanceSerie(usuario, serie, 1, 1);
+		return "TEST, FUNCIONA";
+	}
+	
 	@GetMapping("/usuarios")
 	public List<Usuario> verUsuarios(){
 		return servicio.obtenerUsuarios();
