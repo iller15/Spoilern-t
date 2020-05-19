@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "Series_TP")
@@ -18,15 +18,19 @@ public class Serie {
 	
 	private String nombre;
 	
+	@JsonIgnoreProperties
 	@OneToMany(mappedBy = "serie")
 	private List<Personaje> personajes;
 	
+	@JsonIgnoreProperties
 	@OneToMany(mappedBy = "serie")
 	private List<Temporada> temporadas;
 	
+	@JsonIgnoreProperties
 	@OneToMany(mappedBy = "serie")
 	private List<Articulo> articulos;
 	
+	@JsonIgnoreProperties
 	@OneToMany(mappedBy = "serie")
 	List<AvanceSerie> usuarios;
 	
@@ -42,6 +46,16 @@ public class Serie {
 	}
 	public void setIdSerie(String idSerie) {
 		this.idSerie = idSerie;
+	}
+	
+	public void setAutoIdSerie() {
+		String[] sum;
+		String titulo = "";
+		sum = this.nombre.split(" ");
+		for (int i = 0; i < sum.length; i++) {
+			titulo += sum[i].toCharArray()[0];
+		}
+		this.idSerie = titulo;
 	}
 
 	public String getNombre() {

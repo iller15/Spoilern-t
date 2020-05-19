@@ -10,6 +10,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "Snippet")
 public class Snippet {
@@ -20,14 +22,18 @@ public class Snippet {
 	private String description;
 	private String texto;
 	
-	//@Column(nullable = true)
-	@ManyToMany(mappedBy = "snippets")
-	private List<Personaje> personaje; //Puede no referirse ningun personaje en especifico;
 	
+	//@Column(nullable = true)
+	@JsonIgnoreProperties
+	@ManyToMany(mappedBy = "snippets")
+	private List<Personaje> personaje; //Puede ser null
+	
+	@JsonIgnoreProperties
 	@ManyToOne
 	@JoinColumn(name = "idCapitulo")
 	private Capitulo capitulo;
 	
+	@JsonIgnoreProperties
 	@ManyToMany(mappedBy = "spoilers")
 	private List<Articulo> articulos;
 	

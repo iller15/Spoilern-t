@@ -65,16 +65,24 @@ public class Servicios_web {
 	
 	//--------------------------------------------------------------------
 	//FUNCIONES DE LA PAGINA Y ENTIDADES
+
+	
+//SNIPPET
 	
 	public Snippet registrarSnippet(Snippet snippet) {
+		Integer nSnippets = snippet.getCapitulo().getSpoilers().size() + 1;
+		snippet.setIdSnippet(snippet.getCapitulo().getIdCapitulo() + "SNP" + nSnippets );
+		
 		return snippet_Repositorio.save(snippet);
 	}
 	
 	public List<Snippet> listarSnippet(){ //deberiamos poner un condicionl para que solo admins tengan acceso
 		return this.snippet_Repositorio.findAll();
 	}
+
 	
-	
+//USUARIO
+
 	@Transactional
 	public Usuario registrarUsuario(Usuario nuevo) {
 		return usuario_Repositorio.save(nuevo);
@@ -94,6 +102,8 @@ public class Servicios_web {
 		return this.usuario_Repositorio.findAll();
 	}
 	
+// ARTICULOS
+	
 	@Transactional
 	public Articulo registrarArticulo(Articulo nuevo) {
 		return articulo_Repositorio.save(nuevo);
@@ -106,6 +116,7 @@ public class Servicios_web {
 		Optional<Articulo> aux = this.articulo_Repositorio.findById(id);
 		return aux.get();
 	}
+	
 	//EN TEORÍA LA DE SEARCH BAR
 	public List<Articulo> obtenerArticulo(String busqueda) {
 		String[] aux = busqueda.split(" ");
@@ -122,15 +133,24 @@ public class Servicios_web {
 		}
 		return articulos;
 	}
+
+//AVANCESERIES
 	
 	public void actualizarAvanceSerie(Usuario usuario, Serie serie, Integer temporada, Integer capitulo) {
 		usuario.ActualizarCapitulo(serie, temporada, capitulo);
 	}
 	
+//SERIES
+	
 	//TODO: FORMULARIOS EN FRONT
 	public Serie registrarSerie(Serie nuevo) {
 		return serie_Repositorio.save(nuevo);
 	}
+	
+	public List<Serie> listSeries(){
+		return (List<Serie>) serie_Repositorio.findAll();
+	}
+	
 	public Serie buscarSerieTitulo(String titulo) {
 		//TODO: APRENDER QUERYS
 		List<Serie> series = (List<Serie>) serie_Repositorio.findAll();
@@ -144,11 +164,34 @@ public class Servicios_web {
 	public Serie buscarSerieId(String idSerie) {
 		return serie_Repositorio.findById(idSerie).get();
 	}
+	
+//TEMPORADA
+	
+	public Temporada buscarTemporadaId(String idTemporada) {
+		return temporadas_Repositorio.findById(idTemporada).get();
+	}
+	
 	public void addTemporada(Serie serie, Temporada temporada) {
 		serie.addTemporada(temporada);
 	}
+	
+	public Temporada registrarTemporada(Temporada temporada) {
+		return temporadas_Repositorio.save(temporada);
+	}
+	
 	public void addCapitulo(Serie serie, Integer temporada, Capitulo nuevo) {
 		serie.getTemporada(temporada).addCapitulo(nuevo);
 	}
 	
+//CAPITULOS
+	
+	public Capitulo registrarCapitulo(Capitulo capitulo) {
+		return capitulo_Repositorio.save(capitulo);
+	}
+	public Capitulo buscarCapituloId(String idCapitulo) {
+		return capitulo_Repositorio.findById(idCapitulo).get();
+	}
+	
 }
+
+

@@ -1,7 +1,6 @@
 package Kaori.wiki.entidades;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "Capitulos")
 public class Capitulo {
@@ -21,6 +22,7 @@ public class Capitulo {
 	private int numCap;
 	private String tituloCap;
 	
+	@JsonIgnoreProperties
 	@ManyToOne
 	@JoinColumn(name = "idTemporada")
 	private Temporada temporada;
@@ -37,6 +39,11 @@ public class Capitulo {
 		this.temporada = temporada;
 		this.numCap = numCap;
 		this.spoilers = new ArrayList<Snippet>();
+	}
+	
+	public Capitulo() {
+		this.spoilers = new ArrayList<Snippet>();
+		this.avances = new ArrayList<AvanceSerie>();
 	}
 	
 	//GET & SET
@@ -68,6 +75,22 @@ public class Capitulo {
 		this.temporada = temporada;
 	}
 	
+	public List<Snippet> getSpoilers() {
+		return spoilers;
+	}
+
+	public void setSpoilers(List<Snippet> spoilers) {
+		this.spoilers = spoilers;
+	}
+
+	public List<AvanceSerie> getAvances() {
+		return avances;
+	}
+
+	public void setAvances(List<AvanceSerie> avances) {
+		this.avances = avances;
+	}
+
 	//MAYOR O MENOR (TODO: AVERIGUAR SOBRE SOBRECARGA DE OPERADORES EN JAVA)
 	public boolean mayorA(Capitulo otro) {
 		return (this.getTemporada().getNumTemporada() > otro.getTemporada().getNumTemporada());

@@ -1,5 +1,6 @@
 package Kaori.wiki.entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "Temporadas")
@@ -18,20 +21,24 @@ public class Temporada {
 	//Numero de Temporada;
 	private int numTemporada;
 	//Fechas de emision de la serie.
-	private String Fecha_inicio;
+	private String Fecha_Inicio;
 	private String Fecha_Final;
 	
 	@ManyToOne
 	@JoinColumn(name = "idSerie")
 	private Serie serie;
 	
+	@JsonIgnoreProperties
 	@OneToMany
 	private List<Capitulo> capitulos;
 	
 	public Temporada(Integer numTemporada, String fechaInicio, Serie serie) {
 		this.idtemporada = serie.getIdSerie() + numTemporada.toString();
 		this.numTemporada = numTemporada;
-		this.Fecha_inicio = fechaInicio;
+		this.Fecha_Inicio = fechaInicio;
+	}
+	public Temporada() {
+		this.capitulos = new ArrayList<Capitulo>(); 
 	}
 	
 	public String getIdtemporada() {
@@ -51,11 +58,11 @@ public class Temporada {
 	}
 
 	public String getFecha_inicio() {
-		return Fecha_inicio;
+		return Fecha_Inicio;
 	}
 
 	public void setFecha_inicio(String fecha_inicio) {
-		Fecha_inicio = fecha_inicio;
+		Fecha_Inicio = fecha_inicio;
 	}
 
 	public String getFecha_Final() {
