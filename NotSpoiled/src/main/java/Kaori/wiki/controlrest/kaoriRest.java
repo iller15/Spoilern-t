@@ -137,6 +137,12 @@ public class kaoriRest {
 		return servicio.obtenerArticulo(idArticulo);
 	}
 	
+	@GetMapping("/articulo-{idArticulo}-{idCapitulo}")
+	public List<Snippet> obtenerSnippetsFiltrados(@PathVariable(value = "idArticulo")Long idArticulo,@PathVariable(value = "idCapitulo")String idCapitulo) {
+		return servicio.filtrarArticulo(idCapitulo);
+	}
+	
+	
 }
 
 
