@@ -63,8 +63,13 @@ public class kaoriRest {
 					cont += 1;
 				}
 			}
-		}
+		}	
 		return servicio.registrarSerie(serie);
+	}
+	
+	@GetMapping("/listSeries")
+	public List<Serie> listSerie(){
+		return this.servicio.listSeries();
 	}
 	
 	

@@ -38,7 +38,8 @@ public class Articulo implements Serializable {
 			joinColumns = @JoinColumn(name = "idArticulo"),
 			inverseJoinColumns = @JoinColumn(name = "idSnippet")
 	)
-	private List<Snippet> spoilers;
+	private List<Snippet> spoilers; //creo que no necesitamos esto, ya que cada cliente va a pedir
+									//una lista de spoilers diferente por cada filtro que aplique
 	// List como LISTA ENLAZADA en Funcion getArticuloCensura
 	
 	@JsonIgnore
