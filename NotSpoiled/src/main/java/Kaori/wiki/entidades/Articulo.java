@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -28,8 +30,7 @@ public class Articulo implements Serializable {
 	
 	private String tituloArticulo;
 	private Date fechaPublicacion;
-	//private List<String> palabrasClave;
-	//Aún en consideración???????????????
+	//elimine lo de palabras clace porque se puede hacer con metodos de java solo unsando el titulo.
 	
 	@JsonIgnore
 	@ManyToMany(cascade = {CascadeType.ALL})
@@ -38,10 +39,10 @@ public class Articulo implements Serializable {
 			joinColumns = @JoinColumn(name = "idArticulo"),
 			inverseJoinColumns = @JoinColumn(name = "idSnippet")
 	)
-	private List<Snippet> spoilers; //creo que no necesitamos esto, ya que cada cliente va a pedir
-									//una lista de spoilers diferente por cada filtro que aplique
-	// List como LISTA ENLAZADA en Funcion getArticuloCensura
+	private List<Snippet> spoilers; 
 	
+	// List como LISTA ENLAZADA en Funcion getArticuloCensura
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "idSeries")

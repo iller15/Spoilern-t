@@ -1,5 +1,7 @@
 package Kaori.wiki.controlrest;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -51,8 +53,13 @@ public class kaoriRest {
 	@PostMapping("/regSerie")
 	public Serie registrarSerie(@RequestBody Serie serie) {
 		boolean unico = false;
-		serie.setAutoIdSerie();
 		Integer cont = 1;
+		Articulo articulo = new Articulo();
+		//Para obtener la fecha actual;
+		Date date = new Date();
+		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+		serie.setAutoIdSerie();
+		//verifica si el id dado a la series unico, si no se le cambia el ultimo digito de este aumentandolo en 1
 		while(unico) {
 			for(int i = 0; i < servicio.listSeries().size();i++) { //estoy seguro de que se puede mejorar con un catch y la funcion ya existente de encontrar por id
 				if( serie.getIdSerie() != servicio.listSeries().get(i).getIdSerie() ) {
@@ -63,7 +70,19 @@ public class kaoriRest {
 					cont += 1;
 				}
 			}
-		}	
+		}
+		//creando el articulo principal de la serie
+		//Serie
+		articulo.setSerie(serie);
+		//titulo
+		articulo.setTituloArticulo(serie.getNombre());
+		//fecha
+		formatoFecha.format(date);
+		articulo.setFechaPublicacion(date);
+		
+		//guardando el articulo en la DB
+		registrarArticulo(articulo);
+		
 		return servicio.registrarSerie(serie);
 	}
 	
@@ -145,6 +164,11 @@ public class kaoriRest {
 	@GetMapping("/articulo-{idArticulo}-{idCapitulo}")
 	public List<Snippet> obtenerSnippetsFiltrados(@PathVariable(value = "idArticulo")Long idArticulo,@PathVariable(value = "idCapitulo")String idCapitulo) {
 		return servicio.filtrarArticulo(idCapitulo);
+	}
+	
+	@PostMapping("/regArticulo")
+	public Articulo registrarArticulo(Articulo articulo) {
+		return servicio.registrarArticulo(articulo);
 	}
 	
 	
