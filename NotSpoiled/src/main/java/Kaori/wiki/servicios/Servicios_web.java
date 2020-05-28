@@ -71,14 +71,15 @@ public class Servicios_web {
 	
 	public Snippet registrarSnippet(Snippet snippet) {
 		Integer nSnippets = snippet.getCapitulo().getSpoilers().size() + 1;
-		String nombreSerie;
-		Articulo articulo = new Articulo();
+		//String nombreSerie;
+		//Articulo articulo = new Articulo();
 		
 		//obtenemos el nombre para encontrar el articulo correspondiente
-		nombreSerie = snippet.getCapitulo().getTemporada().getSerie().getNombre();
-		articulo = findArticuloBySerie(nombreSerie);
-		articulo.getSpoilers().add(snippet);
+		//nombreSerie = snippet.getCapitulo().getTemporada().getSerie().getNombre();
+		//articulo = findArticuloBySerie(nombreSerie);
+		//articulo.getSpoilers().add(snippet);
 		
+		//articulo_Repositorio.save(articulo);
 		
 		//articulo.getSpoilers().clear();
 		
