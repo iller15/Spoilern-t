@@ -71,6 +71,18 @@ public class Servicios_web {
 	
 	public Snippet registrarSnippet(Snippet snippet) {
 		Integer nSnippets = snippet.getCapitulo().getSpoilers().size() + 1;
+		String nombreSerie;
+		Articulo articulo = new Articulo();
+		
+		//obtenemos el nombre para encontrar el articulo correspondiente
+		nombreSerie = snippet.getCapitulo().getTemporada().getSerie().getNombre();
+		articulo = findArticuloBySerie(nombreSerie);
+		articulo.getSpoilers().add(snippet);
+		
+		
+		//articulo.getSpoilers().clear();
+		
+		//dandole su id
 		snippet.setIdSnippet(snippet.getCapitulo().getIdCapitulo() + "SNP" + nSnippets );
 		
 		return snippet_Repositorio.save(snippet);
@@ -120,7 +132,15 @@ public class Servicios_web {
 		Articulo articulo = new Articulo();
 		Capitulo capitulo = capitulo_Repositorio.findById(idCapitulo).get();
 		return articulo.getArticuloCensura(capitulo);
-		
+	}
+	public Articulo findArticuloBySerie(String nombreSerie) {
+		List<Articulo> articulos = articulo_Repositorio.findAll();
+		for (int i = 0; i < articulo_Repositorio.count();i++) {
+			if(articulos.get(i).getSerie().getNombre() == nombreSerie) {
+				return articulos.get(i);
+			}
+		}
+		return null;
 	}
 	
 	//EN TEORÍA LA DE SEARCH BAR

@@ -32,6 +32,7 @@ public class Articulo implements Serializable {
 	private Date fechaPublicacion;
 	//elimine lo de palabras clace porque se puede hacer con metodos de java solo unsando el titulo.
 	
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	@JsonIgnore
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(

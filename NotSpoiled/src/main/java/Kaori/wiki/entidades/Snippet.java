@@ -10,6 +10,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -33,6 +36,7 @@ public class Snippet {
 	@JoinColumn(name = "idCapitulo")
 	private Capitulo capitulo;
 	
+	@Cascade(CascadeType.ALL)
 	@JsonIgnore
 	@ManyToMany(mappedBy = "spoilers")
 	private List<Articulo> articulos;

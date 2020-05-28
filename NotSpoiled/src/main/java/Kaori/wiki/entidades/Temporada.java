@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -30,6 +33,7 @@ public class Temporada {
 	@JoinColumn(name = "idSerie")
 	private Serie serie;
 	
+	@Cascade(CascadeType.ALL)
 	@JsonIgnore
 	@OneToMany
 	private List<Capitulo> capitulos;

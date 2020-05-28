@@ -135,11 +135,15 @@ public class kaoriRest {
 	}
 	
 	
-//SNNIPPET
+//SNIPPET
 	
 	@PostMapping("/snippet-{idCapitulo}")
 	public Snippet registrarSnippet(@RequestBody Snippet snippet, @PathVariable(value = "idCapitulo") String idCapitulo) {
 		snippet.setCapitulo(servicio.buscarCapituloId(idCapitulo));
+		//creo que hay un problema aqui para mi porque elimine un par de snippets
+		//tira que ya existe un snippet con ese id;
+		
+		
 		return servicio.registrarSnippet(snippet);
 	}
 	

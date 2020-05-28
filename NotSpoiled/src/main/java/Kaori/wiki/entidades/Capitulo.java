@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -22,15 +25,18 @@ public class Capitulo {
 	private int numCap;
 	private String tituloCap;
 	
+	@Cascade(CascadeType.ALL)
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "idTemporada")
 	private Temporada temporada;
 	
+	@Cascade(CascadeType.ALL)
 	@JsonIgnore
 	@OneToMany(mappedBy = "capitulo")
 	List<Snippet> spoilers;
 	
+	@Cascade(CascadeType.ALL)
 	@JsonIgnore
 	@OneToMany(mappedBy = "capitulo")
 	List<AvanceSerie> avances;

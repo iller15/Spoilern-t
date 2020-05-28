@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -17,12 +20,13 @@ public class Serie {
 	@Id
 	private String idSerie;
 	
-	private String nombre;
+	private String nombre;	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "serie")
 	private List<Personaje> personajes;
 	
+	@Cascade(CascadeType.ALL)
 	@JsonIgnore
 	@OneToMany(mappedBy = "serie")
 	private List<Temporada> temporadas;
@@ -31,6 +35,7 @@ public class Serie {
 	@OneToMany(mappedBy = "serie")
 	private List<Articulo> articulos;
 	
+	@Cascade(CascadeType.ALL)
 	@JsonIgnore
 	@OneToMany(mappedBy = "serie")
 	List<AvanceSerie> usuarios;
