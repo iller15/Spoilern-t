@@ -166,8 +166,15 @@ public class kaoriRest {
 	}
 	
 	@GetMapping("/articulo-{idArticulo}-{idCapitulo}")
-	public List<Snippet> obtenerSnippetsFiltrados(@PathVariable(value = "idArticulo")Long idArticulo,@PathVariable(value = "idCapitulo")String idCapitulo) {
-		return servicio.filtrarArticulo(idCapitulo);
+	public List<Snippet> obtenerSnippetsFiltrados(@PathVariable(value = "idArticulo")String idArticulo,@PathVariable(value = "idCapitulo")String idCapitulo) {
+		Long id= (long) 1;
+		return servicio.filtrarArticulo(id,idCapitulo);
+	}
+	
+	@GetMapping("/articuloid")
+	public List<Snippet> obtenerSnippetsFiltrado() {
+		Long id= (long) 1;
+		return servicio.filtrarArticulo(id,"SwknuS1C1");
 	}
 	
 	@PostMapping("/regArticulo")

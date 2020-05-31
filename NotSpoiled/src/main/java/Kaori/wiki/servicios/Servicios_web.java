@@ -131,8 +131,9 @@ public class Servicios_web {
 		Optional<Articulo> aux = this.articulo_Repositorio.findById(id);
 		return aux.get();
 	}
-	public List<Snippet> filtrarArticulo(String idCapitulo){
+	public List<Snippet> filtrarArticulo(Long idArticulo,String idCapitulo){
 		Articulo articulo = new Articulo();
+		articulo = obtenerArticulo(idArticulo);
 		Capitulo capitulo = capitulo_Repositorio.findById(idCapitulo).get();
 		return articulo.getArticuloCensura(capitulo);
 	}
