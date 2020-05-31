@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Temporada {
 	
 	@Id
-	private String idtemporada; // GENERADA EN CONSTRUCTOR (idk si funciona con postman :| )
+	private String idTemporada; // GENERADA EN CONSTRUCTOR (idk si funciona con postman :| )
 	//Numero de Temporada;
 	private int numTemporada;
 	//Fechas de emision de la serie.
@@ -35,11 +35,11 @@ public class Temporada {
 	
 	@Cascade(CascadeType.ALL)
 	@JsonIgnore
-	@OneToMany
+	@OneToMany(mappedBy = "temporada")
 	private List<Capitulo> capitulos;
 	
 	public Temporada(Integer numTemporada, String fechaInicio, Serie serie) {
-		this.idtemporada = serie.getIdSerie() + numTemporada.toString();
+		this.idTemporada = serie.getIdSerie() + numTemporada.toString();
 		this.numTemporada = numTemporada;
 		this.fechaInicio = fechaInicio;
 	}
@@ -48,11 +48,11 @@ public class Temporada {
 	}
 	
 	public String getIdtemporada() {
-		return idtemporada;
+		return idTemporada;
 	}
 
 	public void setIdtemporada(String idtemporada) {
-		this.idtemporada = idtemporada;
+		this.idTemporada = idtemporada;
 	}
 
 	public int getNumTemporada() {
