@@ -71,23 +71,25 @@ public class Servicios_web {
 	
 	public Snippet registrarSnippet(Snippet snippet) {
 		Integer nSnippets = snippet.getCapitulo().getSpoilers().size() + 1;
-		//String nombreSerie;
-		//Articulo articulo = new Articulo();
-		
-		//obtenemos el nombre para encontrar el articulo correspondiente
-		//nombreSerie = snippet.getCapitulo().getTemporada().getSerie().getNombre();
-		//articulo = findArticuloBySerie(nombreSerie);
-		//articulo.getSpoilers().add(snippet);
-		
-		//articulo_Repositorio.save(articulo);
-		
-		//articulo.getSpoilers().clear();
+		String nombreSerie;
+		Articulo articulo = new Articulo();
 		
 		//dandole su id
 		snippet.setIdSnippet(snippet.getCapitulo().getIdCapitulo() + "SNP" + nSnippets );
 		
+		//obtenemos el nombre para encontrar el articulo correspondiente
+		nombreSerie = snippet.getCapitulo().getTemporada().getSerie().getNombre();
+		articulo = findArticuloBySerie(nombreSerie);
+		articulo.getSpoilers().add(snippet);
+		
+		
+		articulo_Repositorio.save(articulo);
+		
+		//articulo.getSpoilers().clear();
+		
+		
 		return snippet_Repositorio.save(snippet);
-	}
+	}	
 	
 	public List<Snippet> listarSnippet(){ //deberiamos poner un condicionl para que solo admins tengan acceso
 		return this.snippet_Repositorio.findAll();
