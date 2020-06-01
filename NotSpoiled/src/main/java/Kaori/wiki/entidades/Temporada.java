@@ -24,9 +24,9 @@ public class Temporada {
 	//Numero de Temporada;
 	private int numTemporada;
 	//Fechas de emision de la serie.
-	private String fechaInicio;
+	private String fecha_inicio;
 	
-	private String fechaFinal;
+	private String fecha_Final;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -41,10 +41,10 @@ public class Temporada {
 	public Temporada(Integer numTemporada, String fechaInicio, Serie serie) {
 		this.idTemporada = serie.getIdSerie() + numTemporada.toString();
 		this.numTemporada = numTemporada;
-		this.fechaInicio = fechaInicio;
+		this.fecha_inicio = fechaInicio;
 	}
 	public Temporada() {
-		this.capitulos = new ArrayList<Capitulo>(); 
+		this.capitulos = new ArrayList<Capitulo>();
 	}
 	
 	public String getIdtemporada() {
@@ -53,6 +53,11 @@ public class Temporada {
 
 	public void setIdtemporada(String idtemporada) {
 		this.idTemporada = idtemporada;
+	}
+	
+	public void setAutoIdTemporada(String idSerie,Integer nTemporadas) {
+		nTemporadas +=1;
+		this.idTemporada = idSerie +"S"+ nTemporadas.toString();
 	}
 
 	public int getNumTemporada() {
@@ -64,19 +69,19 @@ public class Temporada {
 	}
 
 	public String getFecha_inicio() {
-		return fechaInicio;
+		return fecha_inicio;
 	}
 
 	public void setFecha_inicio(String fecha_inicio) {
-		fechaInicio = fecha_inicio;
+		this.fecha_inicio = fecha_inicio;
 	}
 
 	public String getFecha_Final() {
-		return fechaFinal;
+		return fecha_Final;
 	}
 
 	public void setFecha_Final(String fecha_Final) {
-		fechaFinal = fecha_Final;
+		this.fecha_Final = fecha_Final;
 	}
 
 	public Serie getSerie() {

@@ -137,6 +137,16 @@ public class Servicios_web {
 		Capitulo capitulo = capitulo_Repositorio.findById(idCapitulo).get();
 		return articulo.getArticuloCensura(capitulo);
 	}
+	
+	//EN OPERACION
+	public List<Snippet> getFilterdSpoilers(Long idArticulo){
+		Optional<Articulo> articulo = articulo_Repositorio.findById(idArticulo);
+		return articulo.get().getSpoilers();
+		
+		
+	}
+	
+	
 	public Articulo findArticuloBySerie(String nombreSerie) {
 		List<Articulo> articulos = articulo_Repositorio.findAll();
 		for (int i = 0; i < articulo_Repositorio.count();i++) {
@@ -191,12 +201,15 @@ public class Servicios_web {
 		}
 		return null;
 	}
+	
 	public Serie buscarSerieId(String idSerie) {
 		return serie_Repositorio.findById(idSerie).get();
 	}
 	
 //TEMPORADA
-	
+	public List<Temporada> listarTemporada(){
+		return temporadas_Repositorio.findAll();
+	}
 	public Temporada buscarTemporadaId(String idTemporada) {
 		return temporadas_Repositorio.findById(idTemporada).get();
 	}

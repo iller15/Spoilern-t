@@ -107,11 +107,15 @@ public class kaoriRest {
 	public Temporada registrarTemporada(@PathVariable(value = "idSerie")String idSerie, @RequestBody Temporada temporada) {
 		Serie serie = servicio.buscarSerieId(idSerie);
 		Integer nTemporadas = serie.getTemporadas().size();
-		nTemporadas +=1;
 		temporada.setSerie(serie);
 		temporada.setNumTemporada(serie.getTemporadas().size()+1);
-		temporada.setIdtemporada(idSerie+ "S"+ nTemporadas.toString());
+		temporada.setAutoIdTemporada(serie.getIdSerie(), nTemporadas);
 		return servicio.registrarTemporada(temporada);
+	}
+	
+	@GetMapping("/listTemporadas")
+	public List<Temporada> listarTemporada(){
+		return this.servicio.listarTemporada();
 	}
 	
 //CAPITULO
@@ -140,10 +144,7 @@ public class kaoriRest {
 	@PostMapping("/snippet-{idCapitulo}")
 	public Snippet registrarSnippet(@RequestBody Snippet snippet, @PathVariable(value = "idCapitulo") String idCapitulo) {
 		snippet.setCapitulo(servicio.buscarCapituloId(idCapitulo));
-		//creo que hay un problema aqui para mi porque elimine un par de snippets
-		//tira que ya existe un snippet con ese id;
-		
-		
+			
 		return servicio.registrarSnippet(snippet);
 	}
 	
@@ -165,17 +166,18 @@ public class kaoriRest {
 		return servicio.obtenerArticulo(idArticulo);
 	}
 	
-	@GetMapping("/articulo-{idArticulo}-{idCapitulo}")
-	public List<Snippet> obtenerSnippetsFiltrados(@PathVariable(value = "idArticulo")String idArticulo,@PathVariable(value = "idCapitulo")String idCapitulo) {
-		Long id= (long) 1;
-		return servicio.filtrarArticulo(id,idCapitulo);
+	@GetMapping("/articulo-{idArticulo}/{idCapitulo}")
+	public List<Snippet> obtenerSnippetsFiltrados(@PathVariable(value = "idArticulo")Long idArticulo,@PathVariable(value = "idCapitulo")String idCapitulo) {
+		return servicio.filtrarArticulo(idArticulo,idCapitulo);
 	}
 	
-	@GetMapping("/articuloid")
-	public List<Snippet> obtenerSnippetsFiltrado() {
-		Long id= (long) 1;
-		return servicio.filtrarArticulo(id,"SwknuS1C1");
+	/* EN OPERACION*/
+	@GetMapping("/getFilterdSpoilers-{idArticulo}")
+	public List<Snippet> getFilterdSpoilers(@PathVariable(value = "idArticulo") Long idArticulo) {
+		return servicio.getFilterdSpoilers(idArticulo);
 	}
+	
+	
 	
 	@PostMapping("/regArticulo")
 	public Articulo registrarArticulo(Articulo articulo) {

@@ -93,7 +93,7 @@ public class Articulo implements Serializable {
 	public List<Snippet> getArticuloCensura(Capitulo capitulo){
 		List<Snippet> articuloFinal = new LinkedList<Snippet>();
 		for (Snippet spoiler: spoilers) {
-			if(spoiler.getCapitulo().mayorA(capitulo)) {
+			if(spoiler.getCapitulo().getNumCap() <= capitulo.getNumCap()) {
 				articuloFinal.add(spoiler);
 			}
 		}
