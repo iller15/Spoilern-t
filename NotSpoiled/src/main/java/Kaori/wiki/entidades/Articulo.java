@@ -100,4 +100,14 @@ public class Articulo implements Serializable {
 		return articuloFinal;
 	}
 	
+	public List<Snippet> getArticuloCensuraInt(Integer ncapitulo){
+		List<Snippet> articuloFinal = new LinkedList<Snippet>();
+		for (Snippet spoiler: spoilers) {
+			if(spoiler.getCapitulo().getNumCap() <= ncapitulo) {
+				articuloFinal.add(spoiler);
+			}
+		}
+		return articuloFinal;
+	}
+	
 }

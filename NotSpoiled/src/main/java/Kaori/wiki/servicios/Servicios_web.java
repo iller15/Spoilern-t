@@ -131,18 +131,19 @@ public class Servicios_web {
 		Optional<Articulo> aux = this.articulo_Repositorio.findById(id);
 		return aux.get();
 	}
+	/*
 	public List<Snippet> filtrarArticulo(Long idArticulo,String idCapitulo){
 		Articulo articulo = new Articulo();
 		articulo = obtenerArticulo(idArticulo);
 		Capitulo capitulo = capitulo_Repositorio.findById(idCapitulo).get();
 		return articulo.getArticuloCensura(capitulo);
 	}
-	
+	*/
 	//EN OPERACION
-	public List<Snippet> getFilterdSpoilers(Long idArticulo){
-		Optional<Articulo> articulo = articulo_Repositorio.findById(idArticulo);
-		return articulo.get().getSpoilers();
-		
+	public List<Snippet> filtrarArticulo(Long idArticulo, Integer nCap){
+		Articulo articulo = new Articulo();
+		articulo = obtenerArticulo(idArticulo);
+		return articulo.getArticuloCensuraInt(nCap);
 		
 	}
 	

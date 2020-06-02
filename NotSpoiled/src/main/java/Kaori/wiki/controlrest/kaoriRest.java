@@ -166,15 +166,17 @@ public class kaoriRest {
 		return servicio.obtenerArticulo(idArticulo);
 	}
 	
+	/*
+	//descontinuada
 	@GetMapping("/articulo-{idArticulo}/{idCapitulo}")
 	public List<Snippet> obtenerSnippetsFiltrados(@PathVariable(value = "idArticulo")Long idArticulo,@PathVariable(value = "idCapitulo")String idCapitulo) {
 		return servicio.filtrarArticulo(idArticulo,idCapitulo);
-	}
+	}*/
 	
 	/* EN OPERACION*/
-	@GetMapping("/getFilterdSpoilers-{idArticulo}")
-	public List<Snippet> getFilterdSpoilers(@PathVariable(value = "idArticulo") Long idArticulo) {
-		return servicio.getFilterdSpoilers(idArticulo);
+	@GetMapping("/articulo-{idArticulo}/{nCapitulo}")
+	public List<Snippet> obtenerSnippetsFiltrados(@PathVariable(value = "idArticulo")Long idArticulo,@PathVariable(value = "nCapitulo") Integer nCapitulo) {
+		return servicio.filtrarArticulo(idArticulo,nCapitulo);
 	}
 	
 	
