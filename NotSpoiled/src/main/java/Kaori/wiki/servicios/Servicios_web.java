@@ -192,6 +192,10 @@ public class Servicios_web {
 		return (List<Serie>) serie_Repositorio.findAll();
 	}
 	
+	public List<Temporada> listTemporadasDeSerie(String idSerie){
+		return (List<Temporada>) temporadas_Repositorio.findAllBySerie_idSerie(idSerie);
+	}
+	
 	public Serie buscarSerieTitulo(String titulo) {
 		//TODO: APRENDER QUERYS
 		List<Serie> series = (List<Serie>) serie_Repositorio.findAll();
