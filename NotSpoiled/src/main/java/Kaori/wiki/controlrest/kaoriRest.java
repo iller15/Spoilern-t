@@ -142,6 +142,11 @@ public class kaoriRest {
 		return servicio.listarCapitulo();
 	}
 	
+	@RequestMapping("/listCapitulosByIdTemporada/{idTemporada}")
+	public List<Capitulo> listCapitulosByIdTemporada(@PathVariable(value="idTemporada") String idTemporada) {
+		return this.servicio.listCapitulosDeTemporada(idTemporada);
+	}
+	
 	
 //SNIPPET
 	
