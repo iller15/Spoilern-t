@@ -91,6 +91,11 @@ public class kaoriRest {
 		return this.servicio.listSeries();
 	}
 	
+	@RequestMapping("/listTemporadasByIdSerie/{idSerie}")
+	public List<Temporada> listTemporadasByIdSerie(@PathVariable(value="idSerie") String idSerie) {
+		return this.servicio.listTemporadasDeSerie(idSerie);
+	}
+	
 	
 	//TODO: SOLO COMO TESTEO
 	@PostMapping("/actualiza/{usuario}/{serie}")
