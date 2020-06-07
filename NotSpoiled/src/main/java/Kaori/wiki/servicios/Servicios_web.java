@@ -239,6 +239,9 @@ public class Servicios_web {
 	public Capitulo buscarCapituloId(String idCapitulo) {
 		return capitulo_Repositorio.findById(idCapitulo).get();
 	}
+	public List<Capitulo> buscarCapituloId2(String idCapitulo) {
+		return (List<Capitulo>) capitulo_Repositorio.findAllByidCapitulo(idCapitulo);
+	}
 	public List<Capitulo> listarCapitulo(){
 		return (List<Capitulo>) capitulo_Repositorio.findAll();
 	}
