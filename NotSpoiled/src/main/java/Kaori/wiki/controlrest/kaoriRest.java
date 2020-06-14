@@ -100,6 +100,11 @@ public class kaoriRest {
 		servicio.actualizarAvanceSerie(usuario, serie, 1, 1);
 		return "TEST, FUNCIONA";
 	}
+	
+	@RequestMapping("/getSerieByNombre/{nombre}")
+	public Serie obtenerSerieByNombre(@PathVariable(value="nombre") String nombre) {
+		return this.servicio.buscarSerieByTituloArticulo(nombre);
+	}
 
 //TEMPORADA
 	@PostMapping("/regTemporada-{idSerie}")
