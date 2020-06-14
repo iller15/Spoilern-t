@@ -15,7 +15,6 @@ import Kaori.wiki.entidades.Snippet;
 import Kaori.wiki.entidades.Temporada;
 import Kaori.wiki.entidades.Usuario;
 import Kaori.wiki.repositorios.Articulo_Repositorio;
-//import Kaori.wiki.repositorios.AvanceSerieKey_Respositorio;
 import Kaori.wiki.repositorios.AvanceSerie_Repositorio;
 import Kaori.wiki.repositorios.Capitulo_Repositorio;
 import Kaori.wiki.repositorios.Personaje_Repositorio;
@@ -84,9 +83,7 @@ public class Servicios_web {
 		
 		
 		articulo_Repositorio.save(articulo);
-		
-		//articulo.getSpoilers().clear();
-		
+			
 		
 		return snippet_Repositorio.save(snippet);
 	}	
