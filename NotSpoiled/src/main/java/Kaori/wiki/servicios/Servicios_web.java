@@ -207,6 +207,11 @@ public class Servicios_web {
 		return serie_Repositorio.findById(idSerie).get();
 	}
 	
+	//FUNCION TEMPORAL
+	public Serie buscarSerieByTituloArticulo(String nombre) {
+		return serie_Repositorio.findByNombre(nombre);
+	}
+	
 //TEMPORADA
 	public List<Temporada> listarTemporada(){
 		return temporadas_Repositorio.findAll();
