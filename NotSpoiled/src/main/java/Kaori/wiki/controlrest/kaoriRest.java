@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -96,7 +97,7 @@ public class kaoriRest {
 	public String actualizarSerie(@PathVariable(value = "usuario") Long usuarioId, @PathVariable(value = "serie") String serieId) {
 		//TODO: Formulario
 		Usuario usuario = servicio.buscarUsuarioId(usuarioId);
-		Serie serie = servicio.buscarSerieId(serieId);
+		Serie serie = servicio.getSeriebyId(serieId);
 		servicio.actualizarAvanceSerie(usuario, serie, 1, 1);
 		return "TEST, FUNCIONA";
 	}
@@ -105,11 +106,16 @@ public class kaoriRest {
 	public Serie obtenerSerieByNombre(@PathVariable(value="nombre") String nombre) {
 		return this.servicio.buscarSerieByTituloArticulo(nombre);
 	}
+	
+	@GetMapping("/getSerieById/{idSerie}")
+	public Serie getSerieById(@PathVariable(value = "idSerie") String idSerie) {
+		return this.servicio.getSeriebyId(idSerie);
+	}
 
 //TEMPORADA
 	@PostMapping("/regTemporada-{idSerie}")
 	public Temporada registrarTemporada(@PathVariable(value = "idSerie")String idSerie, @RequestBody Temporada temporada) {
-		Serie serie = servicio.buscarSerieId(idSerie);
+		Serie serie = servicio.getSeriebyId(idSerie);
 		Integer nTemporadas = serie.getTemporadas().size();
 		temporada.setSerie(serie);
 		temporada.setNumTemporada(serie.getTemporadas().size()+1);

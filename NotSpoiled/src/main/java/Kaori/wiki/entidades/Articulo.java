@@ -33,7 +33,6 @@ public class Articulo implements Serializable {
 	//elimine lo de palabras clace porque se puede hacer con metodos de java solo unsando el titulo.
 	
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
-	@JsonIgnore
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(
 			name = "Articulo_Serie_tlb",
@@ -44,7 +43,6 @@ public class Articulo implements Serializable {
 	
 	// List como LISTA ENLAZADA en Funcion getArticuloCensura
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "idSeries")
 	private Serie serie;

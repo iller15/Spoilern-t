@@ -12,6 +12,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -22,12 +23,11 @@ public class Serie {
 	
 	private String nombre;	
 	
-	@JsonIgnore
+	
 	@OneToMany(mappedBy = "serie")
 	private List<Personaje> personajes;
 	
 	@Cascade(CascadeType.ALL)
-	@JsonIgnore
 	@OneToMany(mappedBy = "serie")
 	private List<Temporada> temporadas;
 	
@@ -36,7 +36,7 @@ public class Serie {
 	private List<Articulo> articulos;
 	
 	@Cascade(CascadeType.ALL)
-	@JsonIgnore
+	
 	@OneToMany(mappedBy = "serie")
 	List<AvanceSerie> usuarios;
 	

@@ -200,7 +200,7 @@ public class Servicios_web {
 		return null;
 	}
 	
-	public Serie buscarSerieId(String idSerie) {
+	public Serie getSeriebyId(String idSerie) {
 		return serie_Repositorio.findById(idSerie).get();
 	}
 	
