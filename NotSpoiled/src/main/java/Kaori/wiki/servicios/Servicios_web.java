@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import Kaori.wiki.entidades.Articulo;
+import Kaori.wiki.entidades.AvanceSerie;
 import Kaori.wiki.entidades.Capitulo;
 import Kaori.wiki.entidades.Serie;
 import Kaori.wiki.entidades.Snippet;
@@ -112,6 +113,20 @@ public class Servicios_web {
 	}
 	public List<Usuario> obtenerUsuarios(){
 		return this.usuario_Repositorio.findAll();
+	}
+	public List<AvanceSerie> getLista(Long idUsuario){
+		return usuario_Repositorio.findById(idUsuario).get().getAvancesSeries();
+	}
+	public List<AvanceSerie> añadirSerie(Long idUsuario,String idSerie){
+		Usuario usuario = this.buscarUsuarioId(idUsuario);
+		Serie serie = this.getSeriebyId(idSerie);
+		Capitulo capitulo = new Capitulo();  // no tiene informacion porque solo esta registrando la serie nueva;
+		AvanceSerie avance = new AvanceSerie(usuario, serie, capitulo);
+		List<AvanceSerie> series =  usuario_Repositorio.findById(idUsuario).get().getAvancesSeries();
+		series.add(avance);
+		 
+		return series;	
+		
 	}
 	
 // ARTICULOS

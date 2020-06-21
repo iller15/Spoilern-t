@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Kaori.wiki.entidades.Articulo;
+import Kaori.wiki.entidades.AvanceSerie;
 import Kaori.wiki.entidades.Capitulo;
 import Kaori.wiki.entidades.Serie;
 import Kaori.wiki.entidades.Snippet;
@@ -47,6 +48,10 @@ public class kaoriRest {
 	@GetMapping("/usuarios")
 	public List<Usuario> verUsuarios(){
 		return servicio.obtenerUsuarios();
+	}
+	@PostMapping("/agregarSerie/{idUsuario}/{idSerie}")
+	public List<AvanceSerie> añadirSerie(@PathVariable(value = "idUsuario")Long idUsuario,@PathVariable(value = "idSerie")String idSerie){
+		return this.servicio.añadirSerie(idUsuario, idSerie);
 	}
 	
 //SERIE

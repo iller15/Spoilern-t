@@ -33,7 +33,7 @@ public class Usuario implements Serializable {
 	private boolean banned;
 	
 	public Usuario() {
-		
+		this.series = new ArrayList<AvanceSerie>();
 	}
 	
 	public Long getIdUsuario() {
