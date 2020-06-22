@@ -23,7 +23,7 @@ public class AvanceSerie implements Serializable {
 	@Id
 	private Long idAvanceSerie;
 	
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "series")
 	private Usuario usuario;
