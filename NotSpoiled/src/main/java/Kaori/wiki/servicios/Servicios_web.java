@@ -121,11 +121,16 @@ public class Servicios_web {
 		Usuario usuario = this.buscarUsuarioId(idUsuario);
 		Serie serie = this.getSeriebyId(idSerie);
 		Capitulo capitulo = new Capitulo();  // no tiene informacion porque solo esta registrando la serie nueva;
-		AvanceSerie avance = new AvanceSerie(usuario, serie, capitulo);
-		List<AvanceSerie> series =  usuario_Repositorio.findById(idUsuario).get().getAvancesSeries();
+		AvanceSerie avance = new AvanceSerie();
+		avance.setCapitulo(capitulo);
+		avance.setSerie(serie);
+		avance.setUsuario(usuario);
+		avance.setIdAvanceSerie(0);
+		List<AvanceSerie> series = new ArrayList<AvanceSerie>();
 		series.add(avance);
-		 
-		return series;	
+		usuario.setAvancesSeries(series);
+		
+		return usuario.getAvancesSeries();	
 		
 	}
 	

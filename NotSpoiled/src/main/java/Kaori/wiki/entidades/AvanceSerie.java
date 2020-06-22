@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "AvanceSerie")
@@ -20,15 +21,14 @@ public class AvanceSerie implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAvanceSerie;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name = "series")
 	private Usuario usuario;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties
 	@ManyToOne
 	@JoinColumn(name = "usuarios")
 	private Serie serie;
@@ -38,7 +38,9 @@ public class AvanceSerie implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idCapitulo", referencedColumnName = "id")
 	private Capitulo capitulo;
-
+	
+	public AvanceSerie() {}
+	
 	public AvanceSerie(Usuario usuario, Serie serie, Capitulo capitulo) {
 		this.usuario = usuario;
 		this.serie = serie;

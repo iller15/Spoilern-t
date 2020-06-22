@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "Usuarios") //SEGÃšN ESQUEMA YA ESCRITO
@@ -26,11 +27,14 @@ public class Usuario implements Serializable {
 	private Integer nivelUsuario; 
 	private String password;
 	
-	@JsonIgnore
+	
 	@OneToMany(mappedBy = "usuario")
+	@JsonIgnoreProperties
 	List<AvanceSerie> series;
+	
 	private String correo;
 	private boolean banned;
+	
 	
 	public Usuario() {
 		this.series = new ArrayList<AvanceSerie>();
@@ -63,11 +67,15 @@ public class Usuario implements Serializable {
 	public List<AvanceSerie> getAvancesSeries() {
 		return series;
 	}
+	public void setAvancesSeries(List<AvanceSerie> series) {
+		this.series = series;
+	}
 	public List<Serie> getSeries(){
 		List<Serie> listaSeries = new ArrayList<Serie>();
 		for(AvanceSerie veo:series) { listaSeries.add(veo.getSerie()); }
 		return listaSeries;
 	}
+	
 	//add implementado en Funciones
 	
  	public String getCorreo() {
