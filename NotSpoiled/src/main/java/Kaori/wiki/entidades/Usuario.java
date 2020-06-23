@@ -27,9 +27,8 @@ public class Usuario implements Serializable {
 	private Integer nivelUsuario; 
 	private String password;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
-	@JsonIgnoreProperties
 	List<AvanceSerie> series;
 	
 	private String correo;

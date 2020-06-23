@@ -53,6 +53,14 @@ public class kaoriRest {
 	public List<AvanceSerie> añadirSerie(@PathVariable(value = "idUsuario")Long idUsuario,@PathVariable(value = "idSerie")String idSerie){
 		return this.servicio.añadirSerie(idUsuario, idSerie);
 	}
+	@GetMapping("/lista/{idUsuario}")
+	public List<AvanceSerie> listaUsuario(@PathVariable(value = "idUsuario")Long idUsuario){
+		return this.servicio.getLista(idUsuario);
+	}
+	@GetMapping("/listarCap/{idSerie}/{idUsuario}")
+	public Capitulo getUltimoCap(@PathVariable(value = "idSerie") String idSerie,@PathVariable(value = "idUsuario") Long idUsuario ) {
+		return this.servicio.getUltimoCapSerie(idUsuario, idSerie);
+	}
 	
 //SERIE
 	

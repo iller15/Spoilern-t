@@ -3,6 +3,7 @@ package Kaori.wiki.entidades;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,30 +14,31 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "AvanceSerie")
 public class AvanceSerie implements Serializable {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 7935997482454457022L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idAvanceSerie")
 	private Long idAvanceSerie;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "series")
+	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
 	
-	@JsonIgnoreProperties
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "usuarios")
+	@JoinColumn(name = "idSerie")
 	private Serie serie;
 	
 	
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idCapitulo", referencedColumnName = "id")
+    @JoinColumn(name = "idCapitulo")
 	private Capitulo capitulo;
 	
 	public AvanceSerie() {}
@@ -47,15 +49,7 @@ public class AvanceSerie implements Serializable {
 		this.capitulo = capitulo;
 	}
 	
-	/*
-	public AvanceSerieKey getIdAvanceSerie() {
-		return idAvanceSerie;
-	}
-	public void setIdAvanceSerie(AvanceSerieKey idAvanceSerie) {
-		this.idAvanceSerie = idAvanceSerie;
-	}*/
-	
-	public long getIdAvanceSerie() {
+	public Long getIdAvanceSerie() {
 		return idAvanceSerie;
 	}
 	public void setIdAvanceSerie(long idAvanceSerie) {

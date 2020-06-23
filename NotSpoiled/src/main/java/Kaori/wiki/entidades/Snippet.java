@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.type.TextType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,6 +24,8 @@ public class Snippet {
 	private String idSnippet;
 	
 	private String description;
+	
+	@Column(columnDefinition = "LONGTEXT")
 	private String texto;
 	
 	

@@ -120,18 +120,21 @@ public class Servicios_web {
 	public List<AvanceSerie> añadirSerie(Long idUsuario,String idSerie){
 		Usuario usuario = this.buscarUsuarioId(idUsuario);
 		Serie serie = this.getSeriebyId(idSerie);
-		Capitulo capitulo = new Capitulo();  // no tiene informacion porque solo esta registrando la serie nueva;
 		AvanceSerie avance = new AvanceSerie();
-		avance.setCapitulo(capitulo);
 		avance.setSerie(serie);
 		avance.setUsuario(usuario);
-		avance.setIdAvanceSerie(0);
+		avance.setCapitulo(serie.getCapitulo(0, 0));
 		List<AvanceSerie> series = new ArrayList<AvanceSerie>();
-		series.add(avance);
 		usuario.setAvancesSeries(series);
+		usuario_Repositorio.save(usuario);
+		series.add(avanceSerie_Repositorio.save(avance));
 		
 		return usuario.getAvancesSeries();	
-		
+	}
+	public Capitulo getUltimoCapSerie(Long idUsuario, String idSerie) {
+		Usuario usuario = this.usuario_Repositorio.findById(idUsuario).get();
+		Serie serie = this.serie_Repositorio.findById(idSerie).get();
+		return usuario.ultCapVisto(serie);
 	}
 	
 // ARTICULOS
