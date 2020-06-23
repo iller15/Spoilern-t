@@ -92,7 +92,10 @@ public class Servicios_web {
 	public List<Snippet> listarSnippet(){ //deberiamos poner un condicionl para que solo admins tengan acceso
 		return this.snippet_Repositorio.findAll();
 	}
-
+	
+	public List<Snippet> listarSnippetsDeCapitulo(String idCapitulo){
+		return (List<Snippet>) snippet_Repositorio.findAllByCapitulo_idCapitulo(idCapitulo);
+	}
 	
 //USUARIO
 
