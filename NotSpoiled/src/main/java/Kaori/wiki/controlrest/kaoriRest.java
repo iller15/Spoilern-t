@@ -190,6 +190,12 @@ public class kaoriRest {
 	public List<Snippet> listarSnippet(){
 		return servicio.listarSnippet();
 	}
+	
+	@RequestMapping("/listSnippetsByIdCapitulo/{idCapitulo}")
+	public List<Snippet> listSnippetsByIdCapitulo(@PathVariable(value="idCapitulo") String idCapitulo) {
+		return this.servicio.listarSnippetsDeCapitulo(idCapitulo);
+	}
+
 
 //ARTICULO
 	
